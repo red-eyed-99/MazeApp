@@ -14,6 +14,8 @@ namespace ConsoleMaze
         {
             Console.Clear();
 
+            Console.WriteLine(maze.Hero.HealthPoint);
+
             for (int y = 0; y < maze.Height; y++)
             {
                 for (int x = 0; x < maze.Width; x++)
@@ -35,6 +37,10 @@ namespace ConsoleMaze
                     else if (cell is Ground)
                     {
                         Console.Write(".");
+                    }
+                    else if (cell is Trap)
+                    {
+                        Console.Write("~");
                     }
                 }
 

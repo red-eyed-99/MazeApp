@@ -25,7 +25,9 @@ namespace ConsoleMaze.Maze
 
             BuildCoin();
 
-            var hero = new Hero(0, 0, maze);
+            BuildTrap();
+
+            var hero = new Hero(0, 0, maze, 10);
             maze.Hero = hero;
 
             return maze;
@@ -79,6 +81,14 @@ namespace ConsoleMaze.Maze
             var randomGround = GetRandom(grounds);
             maze[randomGround.X, randomGround.Y] = new Coin(randomGround.X, randomGround.Y, maze, 3);
         }
+
+        private void BuildTrap()
+        {
+            var grounds = maze.Cells.Where(x => x is Ground).ToList();
+            var randomGround = GetRandom(grounds);
+            maze[randomGround.X, randomGround.Y] = new Trap(randomGround.X, randomGround.Y, maze);
+        }
+
         private BaseCell GetRandom(List<BaseCell> cells)
         {
             var index = random.Next(cells.Count);
