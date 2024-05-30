@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VS projects\\ConsoleMaze\\ConsoleMaze\\ConsoleMaze.csproj",
+      "projectUniqueName": "D:\\GitHub Repositories\\MazeApp\\ConsoleMaze\\ConsoleMaze\\ConsoleMaze.csproj",
       "projectName": "ConsoleMaze",
-      "projectPath": "D:\\VS projects\\ConsoleMaze\\ConsoleMaze\\ConsoleMaze.csproj",
+      "projectPath": "D:\\GitHub Repositories\\MazeApp\\ConsoleMaze\\ConsoleMaze\\ConsoleMaze.csproj",
       "packagesPath": "C:\\Users\\mgnbl\\.nuget\\packages\\",
-      "outputPath": "D:\\VS projects\\ConsoleMaze\\ConsoleMaze\\obj\\",
+      "outputPath": "D:\\GitHub Repositories\\MazeApp\\ConsoleMaze\\ConsoleMaze\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\VS Shared\\NuGetPackages"
