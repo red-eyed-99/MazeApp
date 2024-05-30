@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConsoleMaze")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7168090fad4cff1e0ed391a4fbfaaffbb237e339")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7491583566c04c1565f9944b08f2a5a184953e85")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConsoleMaze")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConsoleMaze")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
