@@ -1,0 +1,14 @@
+D:\VS projects\ConsoleMaze\ConsoleMaze\bin\Debug\net8.0\ConsoleMaze.exe
+D:\VS projects\ConsoleMaze\ConsoleMaze\bin\Debug\net8.0\ConsoleMaze.deps.json
+D:\VS projects\ConsoleMaze\ConsoleMaze\bin\Debug\net8.0\ConsoleMaze.runtimeconfig.json
+D:\VS projects\ConsoleMaze\ConsoleMaze\bin\Debug\net8.0\ConsoleMaze.dll
+D:\VS projects\ConsoleMaze\ConsoleMaze\bin\Debug\net8.0\ConsoleMaze.pdb
+D:\VS projects\ConsoleMaze\ConsoleMaze\obj\Debug\net8.0\ConsoleMaze.GeneratedMSBuildEditorConfig.editorconfig
+D:\VS projects\ConsoleMaze\ConsoleMaze\obj\Debug\net8.0\ConsoleMaze.AssemblyInfoInputs.cache
+D:\VS projects\ConsoleMaze\ConsoleMaze\obj\Debug\net8.0\ConsoleMaze.AssemblyInfo.cs
+D:\VS projects\ConsoleMaze\ConsoleMaze\obj\Debug\net8.0\ConsoleMaze.csproj.CoreCompileInputs.cache
+D:\VS projects\ConsoleMaze\ConsoleMaze\obj\Debug\net8.0\ConsoleMaze.dll
+D:\VS projects\ConsoleMaze\ConsoleMaze\obj\Debug\net8.0\refint\ConsoleMaze.dll
+D:\VS projects\ConsoleMaze\ConsoleMaze\obj\Debug\net8.0\ConsoleMaze.pdb
+D:\VS projects\ConsoleMaze\ConsoleMaze\obj\Debug\net8.0\ConsoleMaze.genruntimeconfig.cache
+D:\VS projects\ConsoleMaze\ConsoleMaze\obj\Debug\net8.0\ref\ConsoleMaze.dll
