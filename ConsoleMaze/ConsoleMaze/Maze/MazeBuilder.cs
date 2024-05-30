@@ -27,7 +27,9 @@ namespace ConsoleMaze.Maze
 
             BuildTrap();
 
-            var hero = new Hero(0, 0, maze, 10);
+            BuildBlessPoint();
+
+            var hero = new Hero(0, 0, maze, 5, 10);
             maze.Hero = hero;
 
             return maze;
@@ -87,6 +89,16 @@ namespace ConsoleMaze.Maze
             var grounds = maze.Cells.Where(x => x is Ground).ToList();
             var randomGround = GetRandom(grounds);
             maze[randomGround.X, randomGround.Y] = new Trap(randomGround.X, randomGround.Y, maze);
+        }
+
+        private void BuildBlessPoint()
+        {
+            var deadend = maze.Cells.FirstOrDefault(x => GetNear<Wall>(x).Count() == 3);
+
+            if (deadend != null)
+            {
+                maze[deadend.X, deadend.Y] = new BlessPoint(deadend.X, deadend.Y, maze);
+            }
         }
 
         private BaseCell GetRandom(List<BaseCell> cells)

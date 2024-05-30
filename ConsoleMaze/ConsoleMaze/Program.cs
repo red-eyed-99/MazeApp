@@ -6,8 +6,10 @@ namespace ConsoleMaze
     {
         public static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             var mazeBuilder = new MazeBuilder();
-            var maze = mazeBuilder.Build(5, 12);
+            var maze = mazeBuilder.Build(8, 8);
 
             var drawer = new MazeDrawer();
 

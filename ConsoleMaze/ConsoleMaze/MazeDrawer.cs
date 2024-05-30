@@ -42,6 +42,10 @@ namespace ConsoleMaze
                     {
                         Console.Write("~");
                     }
+                    else if (cell is BlessPoint)
+                    {
+                        Console.Write("s");
+                    }
                 }
 
                 Console.WriteLine(); 
