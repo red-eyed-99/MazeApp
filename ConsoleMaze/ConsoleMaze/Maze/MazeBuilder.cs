@@ -27,7 +27,7 @@ namespace ConsoleMaze.Maze
 
             BuildTrap();
 
-            var hero = new Hero(0, 0, maze);
+            var hero = new Hero(0, 0, maze, 10);
             maze.Hero = hero;
 
             return maze;

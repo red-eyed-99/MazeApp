@@ -12,7 +12,10 @@ namespace ConsoleMaze.Maze.Cells
 
         public int HealthPoint { get; set; }
 
-        public Hero(int x, int y, MazeLevel maze) : base(x , y, maze) { }
+        public Hero(int x, int y, MazeLevel maze, int heroHealth) : base(x, y, maze)
+        {
+            HealthPoint = heroHealth;
+        }
 
         public override bool TryToStep()
         {
