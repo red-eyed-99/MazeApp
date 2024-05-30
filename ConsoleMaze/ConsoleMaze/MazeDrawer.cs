@@ -38,7 +38,7 @@ namespace ConsoleMaze
                     }
                 }
 
-                Console.WriteLine(); //comment
+                Console.WriteLine(); 
             }
         }
     }
