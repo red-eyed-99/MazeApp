@@ -20,7 +20,6 @@ namespace ConsoleMaze.Maze
             Maze = maze;
         }
 
-        public abstract bool TryToStep();
-        
+        public abstract bool TryToStep();      
     }
 }
