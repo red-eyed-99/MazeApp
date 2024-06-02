@@ -50,6 +50,10 @@ namespace ConsoleMaze
                     {
                         Console.Write("V");
                     }
+                    else if (cell is Fountain)
+                    {
+                        Console.Write("F");
+                    }
                 }
 
                 Console.WriteLine(); 

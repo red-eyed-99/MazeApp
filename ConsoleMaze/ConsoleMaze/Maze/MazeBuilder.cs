@@ -31,6 +31,8 @@ namespace ConsoleMaze.Maze
 
             BuildVitalityPotion();
 
+            BuildFountain();
+
             var hero = new Hero(0, 0, maze, 5, 10, 4, 5);
             maze.Hero = hero;
 
@@ -115,6 +117,13 @@ namespace ConsoleMaze.Maze
             var grounds = maze.Cells.Where(x => x is Ground).ToList();
             var randomGround = GetRandom(grounds);
             maze[randomGround.X, randomGround.Y] = new VitalityPotion(randomGround.X, randomGround.Y, maze);
+        }
+
+        private void BuildFountain()
+        {
+            var grounds = maze.Cells.Where(x => x is Ground).ToList();
+            var randomGround = GetRandom(grounds);
+            maze[randomGround.X, randomGround.Y] = new Fountain(randomGround.X, randomGround.Y, maze);
         }
 
         private BaseCell GetRandom(List<BaseCell> cells)
