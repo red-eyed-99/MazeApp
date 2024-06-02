@@ -33,6 +33,8 @@ namespace ConsoleMaze.Maze
 
             BuildFountain();
 
+            BuildBed();
+
             var hero = new Hero(0, 0, maze, 5, 10, 4, 5);
             maze.Hero = hero;
 
@@ -124,6 +126,18 @@ namespace ConsoleMaze.Maze
             var grounds = maze.Cells.Where(x => x is Ground).ToList();
             var randomGround = GetRandom(grounds);
             maze[randomGround.X, randomGround.Y] = new Fountain(randomGround.X, randomGround.Y, maze);
+        }
+      
+        private void BuildBed()
+        {
+            var entrance = maze[0, 0];
+            var placesForBed = GetNear<Ground>(entrance);
+
+            if (placesForBed.Any())
+            {
+                var randomGround = GetRandom(placesForBed.Cast<BaseCell>().ToList());
+                maze[randomGround.X, randomGround.Y] = new Bed(randomGround.X, randomGround.Y, maze);
+            }
         }
 
         private BaseCell GetRandom(List<BaseCell> cells)

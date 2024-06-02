@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleMaze.Maze
+namespace ConsoleMaze.Maze.Cells
 {
     public abstract class BaseCell
     {
-        public MazeLevel Maze {  get; private set; }
+        public MazeLevel Maze { get; private set; }
 
         public int X { get; set; }
         public int Y { get; set; }

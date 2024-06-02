@@ -54,6 +54,10 @@ namespace ConsoleMaze
                     {
                         Console.Write("F");
                     }
+                    else if (cell is Bed)
+                    {
+                        Console.Write("B");
+                    }
                 }
 
                 Console.WriteLine(); 
