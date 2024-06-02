@@ -39,6 +39,8 @@ namespace ConsoleMaze.Maze
 
             BuildGoldmine();
 
+            BuildTeleport();
+
             var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
             maze.Hero = hero;
 
@@ -131,7 +133,7 @@ namespace ConsoleMaze.Maze
             var randomGround = GetRandom(grounds);
             maze[randomGround.X, randomGround.Y] = new Fountain(randomGround.X, randomGround.Y, maze);
         }
-      
+
         private void BuildBed()
         {
             var entrance = maze[0, 0];
@@ -156,6 +158,20 @@ namespace ConsoleMaze.Maze
             var grounds = maze.Cells.Where(x => x is Ground).ToList();
             var randomGround = GetRandom(grounds);
             maze[randomGround.X, randomGround.Y] = new Goldmine(randomGround.X, randomGround.Y, maze);
+        }
+
+        private void BuildTeleport()
+        {
+            var grounds = maze.Cells.Where(x => x is Ground).ToList();
+
+            var randomGround = GetRandom(grounds);
+            var teleportIn = new TeleportIn(randomGround.X, randomGround.Y, maze);
+            maze[randomGround.X, randomGround.Y] = teleportIn;
+            grounds.Remove(randomGround);
+
+            randomGround = GetRandom(grounds);
+            teleportIn.TeleportOut = new TeleportOut(randomGround.X, randomGround.Y, maze);
+            maze[randomGround.X, randomGround.Y] = teleportIn.TeleportOut;
         }
 
         private BaseCell GetRandom(List<BaseCell> cells)

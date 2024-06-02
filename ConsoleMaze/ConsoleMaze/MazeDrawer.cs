@@ -68,6 +68,14 @@ namespace ConsoleMaze
                     {
                         Console.Write("C");
                     }
+                    else if (cell is TeleportIn)
+                    {
+                        Console.Write("]");
+                    }
+                    else if (cell is TeleportOut)
+                    {
+                        Console.Write("[");
+                    }
                 }
 
                 Console.WriteLine(); 
