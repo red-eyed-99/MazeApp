@@ -29,7 +29,9 @@ namespace ConsoleMaze.Maze
 
             BuildBlessPoint();
 
-            var hero = new Hero(0, 0, maze, 5, 10);
+            BuildVitalityPotion();
+
+            var hero = new Hero(0, 0, maze, 5, 10, 4, 5);
             maze.Hero = hero;
 
             return maze;
@@ -86,9 +88,16 @@ namespace ConsoleMaze.Maze
 
         private void BuildTrap()
         {
-            var grounds = maze.Cells.Where(x => x is Ground).ToList();
-            var randomGround = GetRandom(grounds);
-            maze[randomGround.X, randomGround.Y] = new Trap(randomGround.X, randomGround.Y, maze);
+            var grounds = maze.Cells
+                .Where(x => x is Ground)
+                .Where(x => GetNear<Ground>(x).Count >= 2)
+                .ToList();
+
+            if (grounds.Any())
+            {
+                var randomGround = GetRandom(grounds);
+                maze[randomGround.X, randomGround.Y] = new Trap(randomGround.X, randomGround.Y, maze);
+            }
         }
 
         private void BuildBlessPoint()
@@ -99,6 +108,13 @@ namespace ConsoleMaze.Maze
             {
                 maze[deadend.X, deadend.Y] = new BlessPoint(deadend.X, deadend.Y, maze);
             }
+        }
+
+        private void BuildVitalityPotion()
+        {
+            var grounds = maze.Cells.Where(x => x is Ground).ToList();
+            var randomGround = GetRandom(grounds);
+            maze[randomGround.X, randomGround.Y] = new VitalityPotion(randomGround.X, randomGround.Y, maze);
         }
 
         private BaseCell GetRandom(List<BaseCell> cells)

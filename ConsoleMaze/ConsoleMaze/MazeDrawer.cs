@@ -14,7 +14,7 @@ namespace ConsoleMaze
         {
             Console.Clear();
 
-            Console.WriteLine(maze.Hero.HealthPoint);
+            Console.WriteLine(maze.Hero.FatiguePoint);
 
             for (int y = 0; y < maze.Height; y++)
             {
@@ -44,7 +44,11 @@ namespace ConsoleMaze
                     }
                     else if (cell is BlessPoint)
                     {
-                        Console.Write("s");
+                        Console.Write("S");
+                    }
+                    else if (cell is VitalityPotion)
+                    {
+                        Console.Write("V");
                     }
                 }
 
