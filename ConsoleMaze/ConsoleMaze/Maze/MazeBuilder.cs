@@ -35,7 +35,9 @@ namespace ConsoleMaze.Maze
 
             BuildBed();
 
-            var hero = new Hero(0, 0, maze, 5, 10, 0, 10);
+            BuildGreedyHealer();
+
+            var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
             maze.Hero = hero;
 
             return maze;
@@ -138,6 +140,13 @@ namespace ConsoleMaze.Maze
                 var randomGround = GetRandom(placesForBed.Cast<BaseCell>().ToList());
                 maze[randomGround.X, randomGround.Y] = new Bed(randomGround.X, randomGround.Y, maze);
             }
+        }
+
+        private void BuildGreedyHealer()
+        {
+            var grounds = maze.Cells.Where(x => x is Ground).ToList();
+            var randomGround = GetRandom(grounds);
+            maze[randomGround.X, randomGround.Y] = new GreedyHealer(randomGround.X, randomGround.Y, maze);
         }
 
         private BaseCell GetRandom(List<BaseCell> cells)
