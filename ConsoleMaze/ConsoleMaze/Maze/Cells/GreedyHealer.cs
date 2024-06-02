@@ -12,9 +12,12 @@ namespace ConsoleMaze.Maze.Cells
 
         public override bool TryToStep()
         {
-            Maze.Hero.HealthPoint = Maze.Hero.MaxHealth;
-            Maze.Hero.Money = (int)(double)Maze.Hero.Money / 2;
-            Maze[X, Y] = new Ground(X, Y, Maze);
+            if (Maze.Hero.HealthPoint != Maze.Hero.MaxHealth && Maze.Hero.Money > 1)
+            {
+                Maze.Hero.HealthPoint = Maze.Hero.MaxHealth;
+                Maze.Hero.Money = Maze.Hero.Money / 2;
+                Maze[X, Y] = new Ground(X, Y, Maze);
+            }
 
             return true;
         }
