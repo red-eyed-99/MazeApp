@@ -14,6 +14,11 @@ namespace ConsoleMaze
         {
             Console.Clear();
 
+            if (!string.IsNullOrEmpty(maze.Message))
+            {
+                Console.WriteLine(maze.Message);
+            }
+
             Console.WriteLine($"HP: {maze.Hero.HealthPoint}");
             Console.WriteLine($"Fatigue: {maze.Hero.FatiguePoint}");
             Console.WriteLine($"Money: {maze.Hero.Money}");
@@ -68,8 +73,17 @@ namespace ConsoleMaze
                     {
                         Console.Write("C");
                     }
+                    else if (cell is HealPotion)
+                    {
+                        Console.Write("H");
+                    }
+                    else if (cell is Puddle)
+                    {
+                        Console.Write("o");
+                    }
                 }
 
+                maze.Message = string.Empty;
                 Console.WriteLine(); 
             }
         }

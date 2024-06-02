@@ -16,6 +16,8 @@ namespace ConsoleMaze.Maze
 
         public Hero Hero { get; set; }
 
+        public string Message { get; set; }
+
         public BaseCell this[int x, int y]
         {
             get
