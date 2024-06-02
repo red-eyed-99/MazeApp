@@ -18,12 +18,13 @@ namespace ConsoleMaze.Maze.Cells
 
         public int MaxFatigue { get; set; }
 
-        public Hero(int x, int y, MazeLevel maze, int heroHealth, int maxHealth, int fatiguePoint, int maxFatigue) : base(x, y, maze)
+        public Hero(int x, int y, MazeLevel maze, int heroHealth, int maxHealth, int fatiguePoint, int maxFatigue, int money) : base(x, y, maze)
         {
             HealthPoint = heroHealth;
             MaxHealth = maxHealth;
             FatiguePoint = fatiguePoint;
             MaxFatigue = maxFatigue;
+            Money = money;
         }
 
         public override bool TryToStep()

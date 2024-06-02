@@ -14,7 +14,9 @@ namespace ConsoleMaze
         {
             Console.Clear();
 
-            Console.WriteLine(maze.Hero.FatiguePoint);
+            Console.WriteLine($"HP: {maze.Hero.HealthPoint}");
+            Console.WriteLine($"Fatigue: {maze.Hero.FatiguePoint}");
+            Console.WriteLine($"Money: {maze.Hero.Money}");
 
             for (int y = 0; y < maze.Height; y++)
             {
@@ -57,6 +59,10 @@ namespace ConsoleMaze
                     else if (cell is Bed)
                     {
                         Console.Write("B");
+                    }
+                    else if (cell is GreedyHealer)
+                    {
+                        Console.Write("G");
                     }
                 }
 
