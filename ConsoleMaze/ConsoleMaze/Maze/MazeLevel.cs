@@ -63,12 +63,15 @@ namespace ConsoleMaze.Maze
 
             if (cellToStep?.TryToStep() ?? false)
             {
-                Hero.X = heroPositionX;
-                Hero.Y = heroPositionY;
-
-                if (Hero.FatiguePoint != Hero.MaxFatigue)
+                if (cellToStep is not TeleportIn)
                 {
-                    Hero.FatiguePoint++;
+                    Hero.X = heroPositionX;
+                    Hero.Y = heroPositionY;
+
+                    if (Hero.FatiguePoint != Hero.MaxFatigue)
+                    {
+                        Hero.FatiguePoint++;
+                    }
                 }
             }
         }
