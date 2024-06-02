@@ -35,7 +35,7 @@ namespace ConsoleMaze.Maze
 
             BuildBed();
 
-            var hero = new Hero(0, 0, maze, 5, 10, 4, 5);
+            var hero = new Hero(0, 0, maze, 5, 10, 0, 10);
             maze.Hero = hero;
 
             return maze;

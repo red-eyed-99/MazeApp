@@ -65,6 +65,11 @@ namespace ConsoleMaze.Maze
             {
                 Hero.X = heroPositionX;
                 Hero.Y = heroPositionY;
+
+                if (Hero.FatiguePoint != Hero.MaxFatigue)
+                {
+                    Hero.FatiguePoint++;
+                }
             }
         }
     }
