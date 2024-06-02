@@ -9,7 +9,7 @@ namespace ConsoleMaze
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             var mazeBuilder = new MazeBuilder();
-            var maze = mazeBuilder.Build(8, 8);
+            var maze = mazeBuilder.Build(10, 10);
 
             var drawer = new MazeDrawer();
 

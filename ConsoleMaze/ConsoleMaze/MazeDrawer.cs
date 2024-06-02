@@ -64,6 +64,10 @@ namespace ConsoleMaze
                     {
                         Console.Write("G");
                     }
+                    else if (cell is Goldmine)
+                    {
+                        Console.Write("C");
+                    }
                 }
 
                 Console.WriteLine(); 
