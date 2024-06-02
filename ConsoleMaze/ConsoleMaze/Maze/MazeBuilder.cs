@@ -31,6 +31,8 @@ namespace ConsoleMaze.Maze
 
             BuildVitalityPotion();
 
+            BuildFountain();
+
             BuildBed();
 
             var hero = new Hero(0, 0, maze, 5, 10, 4, 5);
@@ -119,6 +121,13 @@ namespace ConsoleMaze.Maze
             maze[randomGround.X, randomGround.Y] = new VitalityPotion(randomGround.X, randomGround.Y, maze);
         }
 
+        private void BuildFountain()
+        {
+            var grounds = maze.Cells.Where(x => x is Ground).ToList();
+            var randomGround = GetRandom(grounds);
+            maze[randomGround.X, randomGround.Y] = new Fountain(randomGround.X, randomGround.Y, maze);
+        }
+      
         private void BuildBed()
         {
             var entrance = maze[0, 0];
