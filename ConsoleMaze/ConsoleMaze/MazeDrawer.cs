@@ -93,6 +93,10 @@ namespace ConsoleMaze
                     {
                         Console.Write("w");
                     }
+                    else if (cell is WeakWall)
+                    {
+                        Console.Write("=");
+                    }
                 }
 
                 maze.Message = string.Empty;
