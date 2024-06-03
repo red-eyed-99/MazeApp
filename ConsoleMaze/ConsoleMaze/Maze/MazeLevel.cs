@@ -23,7 +23,7 @@ namespace ConsoleMaze.Maze
 
         public BaseCell GetCellOrUnit(int x, int y)
         {
-            if (Hero.X == x  && Hero.Y == y)
+            if (Hero.X == x && Hero.Y == y)
             {
                 return Hero;
             }

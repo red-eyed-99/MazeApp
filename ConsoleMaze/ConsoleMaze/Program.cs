@@ -1,4 +1,5 @@
-﻿using ConsoleMaze.Maze;
+﻿using ConsoleMaze.Maze.Cells;
+using ConsoleMaze.Maze;
 
 namespace ConsoleMaze
 {
@@ -6,16 +7,22 @@ namespace ConsoleMaze
     {
         public static void Main(string[] args)
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-
             var mazeBuilder = new MazeBuilder();
             var maze = mazeBuilder.Build(10, 10);
 
             var drawer = new MazeDrawer();
+            drawer.Draw(maze);
 
             while (true)
             {
-                drawer.Draw(maze);
+                var mazeBeforeStep = new MazeLevel();
+                mazeBeforeStep.Cells = maze.Cells;
+                mazeBeforeStep.Hero = maze.Hero;
+
+                drawer.Redraw(maze, mazeBeforeStep);
+
+                //var cellsBeforeStep = new List<BaseCell>(maze.Cells);
+                //var heroPosBeforeStep = new int[] { maze.Hero.X, maze.Hero.Y };
 
                 var key = Console.ReadKey();
 
@@ -41,6 +48,8 @@ namespace ConsoleMaze
                         maze.HeroStep(Direction.Down);
                         break;
                 }
+
+                //drawer.Redraw(maze, cellsBeforeStep, heroPosBeforeStep);
             }
         }
     }
