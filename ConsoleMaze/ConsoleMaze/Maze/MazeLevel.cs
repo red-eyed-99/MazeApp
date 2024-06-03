@@ -1,4 +1,5 @@
 using ConsoleMaze.Maze.Cells;
+using ConsoleMaze.Maze.Cells.Enemies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,31 @@ namespace ConsoleMaze.Maze
     {
         public List<BaseCell> Cells { get; set; } = new List<BaseCell>();
 
+        public List<BaseEnemy> Enemies { get; set; } = new List<BaseEnemy>();
+
         public int Width { get; set; }
         public int Height { get; set; }
 
         public Hero Hero { get; set; }
       
         public string Message { get; set; }
+
+        public BaseCell GetCellOrUnit(int x, int y)
+        {
+            if (Hero.X == x  && Hero.Y == y)
+            {
+                return Hero;
+            }
+
+            var enemy = Enemies.SingleOrDefault(enemy => enemy.X == x && enemy.Y == y);
+
+            if (enemy is not null)
+            {
+                return enemy;
+            }
+
+            return this[x, y];
+        }
 
         public BaseCell this[int x, int y]
         {
@@ -76,6 +96,8 @@ namespace ConsoleMaze.Maze
                     }
                 }
             }
+
+            Enemies.ForEach(x => x.Step());
         }
     }
 }
