@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -72,6 +72,14 @@ namespace ConsoleMaze
                     else if (cell is Goldmine)
                     {
                         Console.Write("C");
+                    }
+                    else if (cell is TeleportIn)
+                    {
+                        Console.Write("]");
+                    }
+                    else if (cell is TeleportOut)
+                    {
+                        Console.Write("[");
                     }
                     else if (cell is HealPotion)
                     {

@@ -1,4 +1,4 @@
-﻿using ConsoleMaze.Maze.Cells;
+using ConsoleMaze.Maze.Cells;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +15,7 @@ namespace ConsoleMaze.Maze
         public int Height { get; set; }
 
         public Hero Hero { get; set; }
-
+      
         public string Message { get; set; }
 
         public BaseCell this[int x, int y]
@@ -65,12 +65,15 @@ namespace ConsoleMaze.Maze
 
             if (cellToStep?.TryToStep() ?? false)
             {
-                Hero.X = heroPositionX;
-                Hero.Y = heroPositionY;
-
-                if (Hero.FatiguePoint != Hero.MaxFatigue)
+                if (cellToStep is not TeleportIn)
                 {
-                    Hero.FatiguePoint++;
+                    Hero.X = heroPositionX;
+                    Hero.Y = heroPositionY;
+
+                    if (Hero.FatiguePoint != Hero.MaxFatigue)
+                    {
+                        Hero.FatiguePoint++;
+                    }
                 }
             }
         }
