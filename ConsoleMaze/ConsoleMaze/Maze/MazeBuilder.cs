@@ -47,6 +47,8 @@ namespace ConsoleMaze.Maze
 
             BuildWolfPit();
 
+            BuildWeakWall();
+
             var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
             maze.Hero = hero;
 
@@ -201,6 +203,16 @@ namespace ConsoleMaze.Maze
             if (crossroads != null)
             {
                 maze[crossroads.X, crossroads.Y] = new WolfPit(crossroads.X, crossroads.Y, maze);
+            }
+        }
+
+        private void BuildWeakWall()
+        {
+            var walls = maze.Cells.Where(x => x is Wall).ToList();
+            for (int i = 0; i < walls.Count * 0.1 ; i++)
+            {
+                var randomWall = GetRandom(walls);
+                maze[randomWall.X, randomWall.Y] = new WeakWall(randomWall.X, randomWall.Y, maze); 
             }
         }
 
