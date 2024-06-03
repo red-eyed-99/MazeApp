@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze.Cells
 {
-    public class Ground : BaseCell
+    public class Puddle : BaseCell
     {
-        public Ground(int x, int y, MazeLevel maze) : base(x, y, maze) { }
+        public Puddle(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
         public override bool TryToStep()
         {
+            Maze.Message = "wap wap";
             return true;
         }
     }

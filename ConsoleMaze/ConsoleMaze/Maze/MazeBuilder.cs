@@ -1,4 +1,4 @@
-﻿using ConsoleMaze.Maze.Cells;
+using ConsoleMaze.Maze.Cells;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +40,10 @@ namespace ConsoleMaze.Maze
             BuildGoldmine();
 
             BuildTeleport();
+          
+            BuildHealPotion();
+          
+            BuildPuddle();
 
             var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
             maze.Hero = hero;
@@ -172,6 +176,20 @@ namespace ConsoleMaze.Maze
             randomGround = GetRandom(grounds);
             teleportIn.TeleportOut = new TeleportOut(randomGround.X, randomGround.Y, maze);
             maze[randomGround.X, randomGround.Y] = teleportIn.TeleportOut;
+        }
+      
+        private void BuildHealPotion()
+        {
+            var grounds = maze.Cells.Where(x => x is Ground).ToList();
+            var randomGround = GetRandom(grounds);
+            maze[randomGround.X, randomGround.Y] = new HealPotion(randomGround.X, randomGround.Y, maze);
+        }
+
+        private void BuildPuddle()
+        {
+            var grounds = maze.Cells.Where(x => x is Ground).ToList();
+            var randomGround = GetRandom(grounds);
+            maze[randomGround.X, randomGround.Y] = new Puddle(randomGround.X, randomGround.Y, maze);
         }
 
         private BaseCell GetRandom(List<BaseCell> cells)

@@ -1,4 +1,4 @@
-﻿using ConsoleMaze.Maze.Cells;
+using ConsoleMaze.Maze.Cells;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,8 @@ namespace ConsoleMaze.Maze
         public int Height { get; set; }
 
         public Hero Hero { get; set; }
+      
+        public string Message { get; set; }
 
         public BaseCell this[int x, int y]
         {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +13,11 @@ namespace ConsoleMaze
         public void Draw(MazeLevel maze)
         {
             Console.Clear();
+
+            if (!string.IsNullOrEmpty(maze.Message))
+            {
+                Console.WriteLine(maze.Message);
+            }
 
             Console.WriteLine($"HP: {maze.Hero.HealthPoint}");
             Console.WriteLine($"Fatigue: {maze.Hero.FatiguePoint}");
@@ -76,8 +81,17 @@ namespace ConsoleMaze
                     {
                         Console.Write("[");
                     }
+                    else if (cell is HealPotion)
+                    {
+                        Console.Write("H");
+                    }
+                    else if (cell is Puddle)
+                    {
+                        Console.Write("o");
+                    }
                 }
 
+                maze.Message = string.Empty;
                 Console.WriteLine(); 
             }
         }
