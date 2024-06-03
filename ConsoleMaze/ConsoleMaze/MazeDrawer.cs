@@ -89,6 +89,10 @@ namespace ConsoleMaze
                     {
                         Console.Write("o");
                     }
+                    else if (cell is WolfPit)
+                    {
+                        Console.Write("w");
+                    }
                 }
 
                 maze.Message = string.Empty;

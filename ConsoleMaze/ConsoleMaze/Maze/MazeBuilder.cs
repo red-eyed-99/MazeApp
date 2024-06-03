@@ -45,6 +45,8 @@ namespace ConsoleMaze.Maze
           
             BuildPuddle();
 
+            BuildWolfPit();
+
             var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
             maze.Hero = hero;
 
@@ -190,6 +192,16 @@ namespace ConsoleMaze.Maze
             var grounds = maze.Cells.Where(x => x is Ground).ToList();
             var randomGround = GetRandom(grounds);
             maze[randomGround.X, randomGround.Y] = new Puddle(randomGround.X, randomGround.Y, maze);
+        }
+
+        private void BuildWolfPit()
+        {
+            var crossroads = maze.Cells.FirstOrDefault(x => x is Ground && GetNear<Ground>(x).Count() == 4);
+
+            if (crossroads != null)
+            {
+                maze[crossroads.X, crossroads.Y] = new WolfPit(crossroads.X, crossroads.Y, maze);
+            }
         }
 
         private BaseCell GetRandom(List<BaseCell> cells)
