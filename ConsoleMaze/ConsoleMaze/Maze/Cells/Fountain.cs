@@ -17,6 +17,7 @@ namespace ConsoleMaze.Maze.Cells
                 Maze.Hero.FatiguePoint--;
                 Maze[X, Y] = new Ground(X, Y, Maze);
             }
+
             return true;
         }
     }

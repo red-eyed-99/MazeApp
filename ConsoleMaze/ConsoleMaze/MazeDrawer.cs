@@ -31,71 +31,71 @@ namespace ConsoleMaze
 
                     if (maze.Hero.X == x && maze.Hero.Y == y)
                     {
-                        Console.Write("@");
+                        Console.Write("\x1b[38;5;206m" + "@");
                     }
                     else if (cell is Wall)
                     {
-                        Console.Write("#");
+                        Console.Write("\x1b[38;5;249m" + "#");
                     }
                     else if (cell is Coin)
                     {
-                        Console.Write("c");
+                        Console.Write("\x1b[38;5;228m" + "c");
                     }
                     else if (cell is Ground)
                     {
-                        Console.Write(".");
+                        Console.Write("\x1b[38;5;95m" + ".");
                     }
                     else if (cell is Trap)
                     {
-                        Console.Write("~");
+                        Console.Write("\x1b[38;5;145m" + "~");
                     }
                     else if (cell is BlessPoint)
                     {
-                        Console.Write("S");
+                        Console.Write("\x1b[38;5;165m" + "S");
                     }
                     else if (cell is VitalityPotion)
                     {
-                        Console.Write("V");
+                        Console.Write("\x1b[38;5;120m" + "V");
                     }
                     else if (cell is Fountain)
                     {
-                        Console.Write("F");
+                        Console.Write("\x1b[38;5;39m" + "F");
                     }
                     else if (cell is Bed)
                     {
-                        Console.Write("B");
+                        Console.Write("\x1b[38;5;1m" + "B");
                     }
                     else if (cell is GreedyHealer)
                     {
-                        Console.Write("G");
+                        Console.Write("\x1b[38;5;54m" + "G");
                     }
                     else if (cell is Goldmine)
                     {
-                        Console.Write("C");
+                        Console.Write("\x1b[38;5;226m" + "C");
                     }
                     else if (cell is TeleportIn)
                     {
-                        Console.Write("]");
+                        Console.Write("\x1b[38;5;27m" + "]");
                     }
                     else if (cell is TeleportOut)
                     {
-                        Console.Write("[");
+                        Console.Write("\x1b[38;5;214m" + "[");
                     }
                     else if (cell is HealPotion)
                     {
-                        Console.Write("H");
+                        Console.Write("\x1b[38;5;9m" + "H");
                     }
                     else if (cell is Puddle)
                     {
-                        Console.Write("o");
+                        Console.Write("\x1b[38;5;143m" + "o");
                     }
                     else if (cell is WolfPit)
                     {
-                        Console.Write("w");
+                        Console.Write("\x1b[38;5;89m" + "w");
                     }
                     else if (cell is WeakWall)
                     {
-                        Console.Write("=");
+                        Console.Write("\x1b[38;5;239m" + "#");
                     }
                 }
 
