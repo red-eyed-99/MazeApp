@@ -35,7 +35,7 @@ namespace ConsoleMaze
                     }
                     else if (cell is Wall)
                     {
-                        Console.Write("\x1b[38;5;249m" + "#");
+                        Console.Write("\x1b[38;5;249m" + "\x1b[47m" + "#" + "\x1b[0m");
                     }
                     else if (cell is Coin)
                     {
