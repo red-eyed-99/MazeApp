@@ -8,7 +8,7 @@ namespace ConsoleMaze.Maze.Cells
 {
     public class WeakWall : BaseCell
     {
-        int Durability { get; set; } = 3;
+        public int Durability { get; set; } = 3;
 
         public WeakWall(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 

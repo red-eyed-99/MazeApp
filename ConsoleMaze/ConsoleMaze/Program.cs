@@ -15,15 +15,6 @@ namespace ConsoleMaze
 
             while (true)
             {
-                var mazeBeforeStep = new MazeLevel();
-                mazeBeforeStep.Cells = maze.Cells;
-                mazeBeforeStep.Hero = maze.Hero;
-
-                drawer.Redraw(maze, mazeBeforeStep);
-
-                //var cellsBeforeStep = new List<BaseCell>(maze.Cells);
-                //var heroPosBeforeStep = new int[] { maze.Hero.X, maze.Hero.Y };
-
                 var key = Console.ReadKey();
 
                 switch (key.Key) 
@@ -48,8 +39,6 @@ namespace ConsoleMaze
                         maze.HeroStep(Direction.Down);
                         break;
                 }
-
-                //drawer.Redraw(maze, cellsBeforeStep, heroPosBeforeStep);
             }
         }
     }

@@ -63,6 +63,8 @@ namespace ConsoleMaze.Maze
             var heroPositionX = Hero.X;
             var heroPositionY = Hero.Y;
 
+            var cellBeforeStep = this[Hero.X, Hero.Y];
+
             switch (direction) 
             {
                 case Direction.Up:
@@ -83,6 +85,8 @@ namespace ConsoleMaze.Maze
 
             var cellToStep = this[heroPositionX, heroPositionY];
 
+            var drawer = new MazeDrawer();
+
             if (cellToStep?.TryToStep() ?? false)
             {
                 if (cellToStep is not TeleportIn)
@@ -95,6 +99,13 @@ namespace ConsoleMaze.Maze
                         Hero.FatiguePoint++;
                     }
                 }
+
+                drawer.Redraw(this, cellBeforeStep);
+            }
+  
+            if (cellToStep is WeakWall weakWall && weakWall.Durability == 0)
+            {
+                drawer.Redraw(this, cellToStep);
             }
 
             Enemies.ForEach(x => x.Step());
