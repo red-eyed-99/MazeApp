@@ -49,6 +49,8 @@ namespace ConsoleMaze.Maze
 
             BuildWeakWall();
 
+            BuildGeyser();
+
             var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
             maze.Hero = hero;
 
@@ -213,6 +215,22 @@ namespace ConsoleMaze.Maze
             {
                 var randomWall = GetRandom(walls);
                 maze[randomWall.X, randomWall.Y] = new WeakWall(randomWall.X, randomWall.Y, maze); 
+            }
+        }
+
+        private void BuildGeyser()
+        {
+            var fountains = maze.Cells.Where(x => x is Fountain).ToList();
+            var groundsNearFountain = new List<Ground>();
+
+            for (int i = 0; i < fountains.Count; i++)
+            {
+                groundsNearFountain.AddRange(GetNear<Ground>(maze[fountains[i].X, fountains[i].Y]));
+            }
+
+            foreach (var ground in groundsNearFountain)
+            {
+                maze[ground.X, ground.Y] = new Puddle(ground.X, ground.Y, maze);
             }
         }
 
