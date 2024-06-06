@@ -12,8 +12,11 @@ namespace ConsoleMaze.Maze.Cells
 
         public override bool TryToStep()
         {
-            Maze.Hero.FatiguePoint--;
-            Maze[X, Y] = new Ground(X, Y, Maze);
+            if (Maze.Hero.FatiguePoint > 0)
+            {
+                Maze.Hero.FatiguePoint--;
+                Maze[X, Y] = new Ground(X, Y, Maze);
+            }
             return true;
         }
     }
