@@ -52,6 +52,7 @@ namespace ConsoleMaze
                 Console.WriteLine();
             }
 
+            Console.WriteLine();
             Console.WriteLine($"HP: {maze.Hero.HealthPoint}");
             Console.WriteLine($"Fatigue: {maze.Hero.FatiguePoint}");
             Console.WriteLine($"Money: {maze.Hero.Money}");
