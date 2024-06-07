@@ -31,6 +31,7 @@ namespace ConsoleMaze
                 { typeof(HealPotion), "h" },
                 { typeof(Puddle), "o" },
                 { typeof(WolfPit), "w" },
+                { typeof(Tavern), "T" },
             };
 
         public void Draw(MazeLevel maze)
