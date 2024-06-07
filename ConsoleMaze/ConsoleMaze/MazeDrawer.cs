@@ -59,7 +59,7 @@ namespace ConsoleMaze
             Console.WriteLine($"Money: {maze.Hero.Money}");
         }
 
-        private string GetSymbolByCellType(BaseCell cell)
+        private string GetSymbolByCellType(IBaseCell cell)
         {
             return TypeSymbolDictionary[cell.GetType()];
         }
