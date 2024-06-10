@@ -34,6 +34,30 @@ namespace ConsoleMaze
                 { typeof(Tavern), "T" },
             };
 
+        public Dictionary<Type, ConsoleColor> ColorSymbolDictionary =
+            new Dictionary<Type, ConsoleColor>()
+            {
+                { typeof(Hero), ConsoleColor.Green },
+
+                { typeof(Wall), ConsoleColor.Gray },
+                { typeof(WeakWall), ConsoleColor.DarkGray },
+                { typeof(Coin), ConsoleColor.Yellow },
+                { typeof(Ground), ConsoleColor.Magenta },
+                { typeof(Trap), ConsoleColor.DarkMagenta },
+                { typeof(BlessPoint), ConsoleColor.White },
+                { typeof(VitalityPotion), ConsoleColor.White },
+                { typeof(Fountain), ConsoleColor.Cyan },
+                { typeof(Bed), ConsoleColor.White },
+                { typeof(GreedyHealer), ConsoleColor.White },
+                { typeof(Goldmine), ConsoleColor.DarkYellow },
+                { typeof(TeleportIn), ConsoleColor.Blue },
+                { typeof(TeleportOut), ConsoleColor.Blue },
+                { typeof(HealPotion), ConsoleColor.White },
+                { typeof(Puddle), ConsoleColor.Cyan },
+                { typeof(WolfPit), ConsoleColor.DarkMagenta },
+                { typeof(Tavern), ConsoleColor.White },
+            };
+
         public void Draw(MazeLevel maze)
         {
             Console.Clear();
@@ -46,7 +70,9 @@ namespace ConsoleMaze
                 {
                     var cell = maze.GetCellOrUnit(x, y);
 
+                    Console.ForegroundColor = GetColorByCellType(cell);
                     Console.Write(GetSymbolByCellType(cell));
+                    Console.ResetColor();
                 }
 
                 maze.Message = string.Empty;
@@ -57,6 +83,11 @@ namespace ConsoleMaze
             Console.WriteLine($"HP: {maze.Hero.HealthPoint}");
             Console.WriteLine($"Fatigue: {maze.Hero.FatiguePoint}");
             Console.WriteLine($"Money: {maze.Hero.Money}");
+        }
+
+        private ConsoleColor GetColorByCellType(IBaseCell cell)
+        {
+            return ColorSymbolDictionary[cell.GetType()];
         }
 
         private string GetSymbolByCellType(IBaseCell cell)
