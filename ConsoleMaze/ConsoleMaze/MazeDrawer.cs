@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ConsoleMaze.Maze;
 using ConsoleMaze.Maze.Cells;
+using ConsoleMaze.Maze.Cells.Enemies;
 
 namespace ConsoleMaze
 {
@@ -85,6 +86,18 @@ namespace ConsoleMaze
             Console.WriteLine($"Money: {maze.Hero.Money}");
         }
 
+        public void Redraw(MazeLevel maze, BaseCell cell)
+        {
+            Console.SetCursorPosition(cell.X, cell.Y);
+
+            cell = maze[cell.X, cell.Y];
+
+            Console.Write(GetSymbolByCellType(cell));
+
+            Console.SetCursorPosition(maze.Hero.X, maze.Hero.Y);
+            Console.Write("@");
+        }
+      
         private ConsoleColor GetColorByCellType(IBaseCell cell)
         {
             return ColorSymbolDictionary[cell.GetType()];
