@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze.Cells
 {
-    public class Hero : BaseCell
+    public class Hero : BaseCell, IHero
     {
         public int Money { get; set; }
 
