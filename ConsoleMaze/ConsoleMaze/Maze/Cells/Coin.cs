@@ -17,6 +17,7 @@ namespace ConsoleMaze.Maze.Cells
 
         public override bool TryToStep()
         {
+            Maze.Message = "oh, coin!";
             Maze.Hero.Money += CoinCount;
             Maze[X, Y] = new Ground(X, Y, Maze);
             return true;

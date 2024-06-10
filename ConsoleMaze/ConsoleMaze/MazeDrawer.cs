@@ -11,9 +11,59 @@ namespace ConsoleMaze
 {
     public class MazeDrawer
     {
+        public Dictionary<Type, string> TypeSymbolDictionary =
+            new Dictionary<Type, string>()
+            {
+                { typeof(Hero), "@" },
+
+                { typeof(Wall), "#" },
+                { typeof(WeakWall), "#" },
+                { typeof(Coin), "c" },
+                { typeof(Ground), "." },
+                { typeof(Trap), "~" },
+                { typeof(BlessPoint), "$" },
+                { typeof(VitalityPotion), "v" },
+                { typeof(Fountain), "f" },
+                { typeof(Bed), "b" },
+                { typeof(GreedyHealer), "H" },
+                { typeof(Goldmine), "G" },
+                { typeof(TeleportIn), "]" },
+                { typeof(TeleportOut), "[" },
+                { typeof(HealPotion), "h" },
+                { typeof(Puddle), "o" },
+                { typeof(WolfPit), "w" },
+                { typeof(Tavern), "T" },
+            };
+
+        public Dictionary<Type, ConsoleColor> ColorSymbolDictionary =
+            new Dictionary<Type, ConsoleColor>()
+            {
+                { typeof(Hero), ConsoleColor.Green },
+
+                { typeof(Wall), ConsoleColor.Gray },
+                { typeof(WeakWall), ConsoleColor.DarkGray },
+                { typeof(Coin), ConsoleColor.Yellow },
+                { typeof(Ground), ConsoleColor.Magenta },
+                { typeof(Trap), ConsoleColor.DarkMagenta },
+                { typeof(BlessPoint), ConsoleColor.White },
+                { typeof(VitalityPotion), ConsoleColor.White },
+                { typeof(Fountain), ConsoleColor.Cyan },
+                { typeof(Bed), ConsoleColor.White },
+                { typeof(GreedyHealer), ConsoleColor.White },
+                { typeof(Goldmine), ConsoleColor.DarkYellow },
+                { typeof(TeleportIn), ConsoleColor.Blue },
+                { typeof(TeleportOut), ConsoleColor.Blue },
+                { typeof(HealPotion), ConsoleColor.White },
+                { typeof(Puddle), ConsoleColor.Cyan },
+                { typeof(WolfPit), ConsoleColor.DarkMagenta },
+                { typeof(Tavern), ConsoleColor.White },
+            };
+
         public void Draw(MazeLevel maze)
         {
             Console.Clear();
+
+            Console.WriteLine(maze.Message);
 
             for (int y = 0; y < maze.Height; y++)
             {
@@ -21,78 +71,9 @@ namespace ConsoleMaze
                 {
                     var cell = maze.GetCellOrUnit(x, y);
 
-                    if (cell is Hero)
-                    {
-                        Console.Write("@");
-                    }
-                    else if (cell is BaseEnemy)
-                    {
-                        Console.Write("E");
-                    }
-                    else if (cell is Wall)
-                    {
-                        Console.Write("#");
-                    }
-                    else if (cell is Coin)
-                    {
-                        Console.Write("c");
-                    }
-                    else if (cell is Ground)
-                    {
-                        Console.Write(".");
-                    }
-                    else if (cell is Trap)
-                    {
-                        Console.Write("~");
-                    }
-                    else if (cell is BlessPoint)
-                    {
-                        Console.Write("S");
-                    }
-                    else if (cell is VitalityPotion)
-                    {
-                        Console.Write("V");
-                    }
-                    else if (cell is Fountain)
-                    {
-                        Console.Write("F");
-                    }
-                    else if (cell is Bed)
-                    {
-                        Console.Write("B");
-                    }
-                    else if (cell is GreedyHealer)
-                    {
-                        Console.Write("G");
-                    }
-                    else if (cell is Goldmine)
-                    {
-                        Console.Write("C");
-                    }
-                    else if (cell is TeleportIn)
-                    {
-                        Console.Write("]");
-                    }
-                    else if (cell is TeleportOut)
-                    {
-                        Console.Write("[");
-                    }
-                    else if (cell is HealPotion)
-                    {
-                        Console.Write("H");
-                    }
-                    else if (cell is Puddle)
-                    {
-                        Console.Write("o");
-                    }
-                    else if (cell is WolfPit)
-                    {
-                        Console.Write("w");
-                    }
-                    else if (cell is WeakWall)
-                    {
-                        Console.Write("=");
-                    }
+                    Console.ForegroundColor = GetColorByCellType(cell);
+                    Console.Write(GetSymbolByCellType(cell));
+                    Console.ResetColor();
                 }
 
                 maze.Message = string.Empty;
@@ -100,12 +81,6 @@ namespace ConsoleMaze
             }
 
             Console.WriteLine();
-
-            if (!string.IsNullOrEmpty(maze.Message))
-            {
-                Console.WriteLine(maze.Message);
-            }
-
             Console.WriteLine($"HP: {maze.Hero.HealthPoint}");
             Console.WriteLine($"Fatigue: {maze.Hero.FatiguePoint}");
             Console.WriteLine($"Money: {maze.Hero.Money}");
@@ -117,41 +92,20 @@ namespace ConsoleMaze
 
             cell = maze[cell.X, cell.Y];
 
-            if (cell is Ground)
-            {
-                Console.Write(".");
-            }
-            else if (cell is BlessPoint)
-            {
-                Console.Write("S");
-            }
-            else if (cell is Goldmine)
-            {
-                Console.Write("C");
-            }
-            else if (cell is TeleportIn)
-            {
-                Console.Write("]");
-            }
-            else if (cell is TeleportOut)
-            {
-                Console.Write("[");
-            }
-            else if (cell is GreedyHealer)
-            {
-                Console.Write("G");
-            }
-            else if (cell is HealPotion)
-            {
-                Console.Write("H");
-            }
-            else if (cell is Puddle)
-            {
-                Console.Write("o");
-            }
+            Console.Write(GetSymbolByCellType(cell));
 
             Console.SetCursorPosition(maze.Hero.X, maze.Hero.Y);
             Console.Write("@");
+        }
+      
+        private ConsoleColor GetColorByCellType(IBaseCell cell)
+        {
+            return ColorSymbolDictionary[cell.GetType()];
+        }
+
+        private string GetSymbolByCellType(IBaseCell cell)
+        {
+            return TypeSymbolDictionary[cell.GetType()];
         }
     }
 }
