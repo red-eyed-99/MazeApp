@@ -88,13 +88,29 @@ namespace ConsoleMaze
 
         public void Redraw(MazeLevel maze, BaseCell cell)
         {
-            Console.SetCursorPosition(cell.X, cell.Y);
+            Console.SetCursorPosition(0, 0);
+            Console.ResetColor();
+
+            if (maze.Message == string.Empty)
+            {
+                Console.Write(new string(' ', Console.BufferWidth));
+            }
+            else
+            {
+                Console.Write(maze.Message);
+            }
+
+            maze.Message = string.Empty;
+
+            Console.SetCursorPosition(cell.X, cell.Y + 1);
 
             cell = maze[cell.X, cell.Y];
 
+            Console.ForegroundColor = GetColorByCellType(cell);
             Console.Write(GetSymbolByCellType(cell));
 
-            Console.SetCursorPosition(maze.Hero.X, maze.Hero.Y);
+            Console.ForegroundColor = GetColorByCellType(maze.Hero);
+            Console.SetCursorPosition(maze.Hero.X, maze.Hero.Y + 1);
             Console.Write("@");
         }
       

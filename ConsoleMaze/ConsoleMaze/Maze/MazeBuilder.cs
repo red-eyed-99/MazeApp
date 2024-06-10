@@ -235,6 +235,8 @@ namespace ConsoleMaze.Maze
                 maze[ground.X, ground.Y] = new Puddle(ground.X, ground.Y, maze);
             }
 
+        }
+
         private void BuildTavern()
         {
             var grounds = maze.Cells.Where(x => x is Ground).ToList();

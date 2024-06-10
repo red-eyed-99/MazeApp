@@ -7,6 +7,8 @@ namespace ConsoleMaze
     {
         public static void Main(string[] args)
         {
+            Console.CursorVisible = false;
+
             var mazeBuilder = new MazeBuilder();
             var maze = mazeBuilder.Build(10, 10);
 
