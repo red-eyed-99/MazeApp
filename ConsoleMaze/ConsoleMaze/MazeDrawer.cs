@@ -130,8 +130,13 @@ namespace ConsoleMaze
 
         private void ShowHeroStatus(MazeLevel maze)
         {
-            Console.SetCursorPosition(0, maze.Height + 1);
-            Console.WriteLine();
+            for (int afterMazeLineNumber = 2; afterMazeLineNumber <= 4; afterMazeLineNumber++)
+            {
+                Console.SetCursorPosition(0, maze.Height + afterMazeLineNumber);
+                Console.Write(new string(' ', Console.BufferWidth));
+            }
+
+            Console.SetCursorPosition(0, maze.Height + 2);
             Console.WriteLine($"HP: {maze.Hero.HealthPoint}/{maze.Hero.MaxHealth}");
             Console.WriteLine($"Fatigue: {maze.Hero.FatiguePoint}/{maze.Hero.MaxFatigue}");
             Console.WriteLine($"Money: {maze.Hero.Money}");
