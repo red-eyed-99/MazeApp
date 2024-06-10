@@ -63,7 +63,7 @@ namespace ConsoleMaze
         {
             Console.Clear();
 
-            Console.WriteLine(maze.Message);
+            Console.WriteLine();
 
             for (int y = 0; y < maze.Height; y++)
             {
@@ -76,17 +76,42 @@ namespace ConsoleMaze
                     Console.ResetColor();
                 }
 
-                maze.Message = string.Empty;
                 Console.WriteLine();
             }
 
-            Console.WriteLine();
-            Console.WriteLine($"HP: {maze.Hero.HealthPoint}");
-            Console.WriteLine($"Fatigue: {maze.Hero.FatiguePoint}");
-            Console.WriteLine($"Money: {maze.Hero.Money}");
+            ShowHeroStatus(maze);
         }
 
         public void Redraw(MazeLevel maze, BaseCell cell)
+        {
+            ShowMessage(maze);
+
+            Console.SetCursorPosition(cell.X, cell.Y + 1);
+
+            cell = maze[cell.X, cell.Y];
+
+            Console.ForegroundColor = GetColorByCellType(cell);
+            Console.Write(GetSymbolByCellType(cell));
+
+            Console.ForegroundColor = GetColorByCellType(maze.Hero);
+            Console.SetCursorPosition(maze.Hero.X, maze.Hero.Y + 1);
+            Console.Write("@");
+            Console.ResetColor();
+
+            ShowHeroStatus(maze);
+        }
+      
+        private ConsoleColor GetColorByCellType(IBaseCell cell)
+        {
+            return ColorSymbolDictionary[cell.GetType()];
+        }
+
+        private string GetSymbolByCellType(IBaseCell cell)
+        {
+            return TypeSymbolDictionary[cell.GetType()];
+        }
+
+        private void ShowMessage(MazeLevel maze)
         {
             Console.SetCursorPosition(0, 0);
             Console.ResetColor();
@@ -101,27 +126,15 @@ namespace ConsoleMaze
             }
 
             maze.Message = string.Empty;
-
-            Console.SetCursorPosition(cell.X, cell.Y + 1);
-
-            cell = maze[cell.X, cell.Y];
-
-            Console.ForegroundColor = GetColorByCellType(cell);
-            Console.Write(GetSymbolByCellType(cell));
-
-            Console.ForegroundColor = GetColorByCellType(maze.Hero);
-            Console.SetCursorPosition(maze.Hero.X, maze.Hero.Y + 1);
-            Console.Write("@");
-        }
-      
-        private ConsoleColor GetColorByCellType(IBaseCell cell)
-        {
-            return ColorSymbolDictionary[cell.GetType()];
         }
 
-        private string GetSymbolByCellType(IBaseCell cell)
+        private void ShowHeroStatus(MazeLevel maze)
         {
-            return TypeSymbolDictionary[cell.GetType()];
+            Console.SetCursorPosition(0, maze.Height + 1);
+            Console.WriteLine();
+            Console.WriteLine($"HP: {maze.Hero.HealthPoint}/{maze.Hero.MaxHealth}");
+            Console.WriteLine($"Fatigue: {maze.Hero.FatiguePoint}/{maze.Hero.MaxFatigue}");
+            Console.WriteLine($"Money: {maze.Hero.Money}");
         }
     }
 }
