@@ -8,7 +8,7 @@ namespace ConsoleMaze.Maze.Cells
 {
     public class VitalityPotion : BaseCell
     {
-        public VitalityPotion(int x, int y, MazeLevel maze) : base(x, y, maze) { }
+        public VitalityPotion(int x, int y, IMazeLevel maze) : base(x, y, maze) { }
 
         public override bool TryToStep()
         {

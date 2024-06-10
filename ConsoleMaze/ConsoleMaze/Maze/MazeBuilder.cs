@@ -51,6 +51,8 @@ namespace ConsoleMaze.Maze
 
             BuildGeyser();
 
+            BuildTavern();
+
             var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
             maze.Hero = hero;
 
@@ -232,6 +234,12 @@ namespace ConsoleMaze.Maze
             {
                 maze[ground.X, ground.Y] = new Puddle(ground.X, ground.Y, maze);
             }
+
+        private void BuildTavern()
+        {
+            var grounds = maze.Cells.Where(x => x is Ground).ToList();
+            var randomGround = GetRandom(grounds);
+            maze[randomGround.X, randomGround.Y] = new Tavern(randomGround.X, randomGround.Y, maze);
         }
 
         private BaseCell GetRandom(List<BaseCell> cells)
