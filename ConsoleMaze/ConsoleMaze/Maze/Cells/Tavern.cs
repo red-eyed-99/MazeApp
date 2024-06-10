@@ -12,7 +12,7 @@ namespace ConsoleMaze.Maze.Cells
 
         public override bool TryToStep()
         {
-            if (Maze.Hero.Money >= 2)
+            if (Maze.Hero.Money >= 2 && Maze.Hero.FatiguePoint > 0)
             {
                 Maze.Hero.Money -= 2;
                 Maze.Hero.FatiguePoint -= 5;
