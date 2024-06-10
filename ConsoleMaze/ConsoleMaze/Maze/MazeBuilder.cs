@@ -1,4 +1,5 @@
 using ConsoleMaze.Maze.Cells;
+using ConsoleMaze.Maze.Cells.Enemies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,41 +21,26 @@ namespace ConsoleMaze.Maze
             maze.Height = height;
 
             BuildWall();
-
             BuildGround();
-
             BuildCoin();
-
             BuildTrap();
-
             BuildBlessPoint();
-
             BuildVitalityPotion();
-
             BuildFountain();
-
             BuildBed();
-
             BuildGreedyHealer();
-
             BuildGoldmine();
-
-            BuildTeleport();
-          
-            BuildHealPotion();
-          
+            BuildTeleport();       
+            BuildHealPotion();       
             BuildPuddle();
-
             BuildWolfPit();
-
             BuildWeakWall();
-
             BuildGeyser();
-
             BuildTavern();
 
             var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
             maze.Hero = hero;
+            maze.Enemies.Add(new Bull(10, 10, maze));
 
             return maze;
         }
