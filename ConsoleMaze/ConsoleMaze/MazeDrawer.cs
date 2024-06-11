@@ -86,9 +86,9 @@ namespace ConsoleMaze
             ShowHeroStatus(maze);
         }
 
-        public void Redraw(MazeLevel maze, List<int[]> unitsBeforeStep)
+        public void Redraw(MazeLevel maze, List<int[]> cellsToRedrawCoordinates)
         {
-            foreach (var cell in unitsBeforeStep)
+            foreach (var cell in cellsToRedrawCoordinates)
             {
                 var currentCell = maze.GetCellOrUnit(cell[0], cell[1]);
                 RedrawCell(currentCell);
