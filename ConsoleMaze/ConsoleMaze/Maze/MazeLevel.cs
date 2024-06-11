@@ -75,9 +75,13 @@ namespace ConsoleMaze.Maze
             var heroPositionX = Hero.X;
             var heroPositionY = Hero.Y;
 
-            var cellBeforeStep = this[Hero.X, Hero.Y];
+            var cellsToRedrawCoordinates = new List<int[]>() { new int[] { heroPositionX, heroPositionY } };
+            foreach (var enemy in Enemies)
+            {
+                cellsToRedrawCoordinates.Add([enemy.X, enemy.Y]);
+            }
 
-            switch (direction) 
+            switch (direction)
             {
                 case Direction.Up:
                     heroPositionY--;
@@ -112,15 +116,23 @@ namespace ConsoleMaze.Maze
                     }
                 }
 
-                drawer.Redraw(this, cellBeforeStep);
-            }
-  
-            if (cellToStep is WeakWall weakWall && weakWall.Durability == 0)
-            {
-                drawer.Redraw(this, cellToStep);
+                Enemies.ForEach(x => x.Step());
+
+                drawer.ShowMessage(this);
+                drawer.Redraw(this, cellsToRedrawCoordinates);
             }
 
-            Enemies.ForEach(x => x.Step());
+            if (cellToStep is WeakWall weakWall)
+            {
+                drawer.ShowMessage(this);
+                Enemies.ForEach(x => x.Step());
+
+                if (weakWall.Durability == 0)
+                {
+                    cellsToRedrawCoordinates.Add([cellToStep.X, cellToStep.Y]);
+                    drawer.Redraw(this, cellsToRedrawCoordinates);
+                }
+            }     
         }
     }
 }
