@@ -40,7 +40,7 @@ namespace ConsoleMaze.Maze
 
             var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
             maze.Hero = hero;
-            maze.Enemies.Add(new Bull(10, 10, maze));
+            maze.Enemies.Add(new Bull(9, 9, maze));
 
             return maze;
         }

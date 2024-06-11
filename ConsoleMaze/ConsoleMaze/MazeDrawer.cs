@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +33,8 @@ namespace ConsoleMaze
                 { typeof(Puddle), "o" },
                 { typeof(WolfPit), "w" },
                 { typeof(Tavern), "T" },
+
+                { typeof(Bull), "Ʊ" },
             };
 
         public Dictionary<Type, ConsoleColor> ColorSymbolDictionary =
@@ -57,6 +59,8 @@ namespace ConsoleMaze
                 { typeof(Puddle), ConsoleColor.Cyan },
                 { typeof(WolfPit), ConsoleColor.DarkMagenta },
                 { typeof(Tavern), ConsoleColor.White },
+
+                { typeof(Bull), ConsoleColor.Red },
             };
 
         public void Draw(MazeLevel maze)
@@ -82,7 +86,7 @@ namespace ConsoleMaze
             ShowHeroStatus(maze);
         }
 
-        public void Redraw(MazeLevel maze, BaseCell cell)
+        public void Redraw(IMazeLevel maze, BaseCell cell)
         {
             ShowMessage(maze);
 
@@ -98,6 +102,15 @@ namespace ConsoleMaze
             Console.Write("@");
             Console.ResetColor();
 
+            foreach (var enemy in maze.Enemies)
+            {
+                Console.ForegroundColor = GetColorByCellType(enemy);
+                Console.SetCursorPosition(enemy.X, enemy.Y + 1);
+                Console.Write(GetSymbolByCellType(enemy));
+            }
+
+            Console.ResetColor();
+
             ShowHeroStatus(maze);
         }
       
@@ -111,7 +124,7 @@ namespace ConsoleMaze
             return TypeSymbolDictionary[cell.GetType()];
         }
 
-        private void ShowMessage(MazeLevel maze)
+        private void ShowMessage(IMazeLevel maze)
         {
             Console.SetCursorPosition(0, 0);
             Console.ResetColor();
@@ -128,7 +141,7 @@ namespace ConsoleMaze
             maze.Message = string.Empty;
         }
 
-        private void ShowHeroStatus(MazeLevel maze)
+        private void ShowHeroStatus(IMazeLevel maze)
         {
             for (int afterMazeLineNumber = 2; afterMazeLineNumber <= 4; afterMazeLineNumber++)
             {
