@@ -26,37 +26,46 @@ namespace ConsoleMaze.Maze.Cells.Enemies
 
         public override void Step()
         {
-            var bullPositionX = X;
-            var bullPositionY = Y;
-
-            switch (movementDirection)
+            while (true)
             {
-                case Direction.Up:
-                    bullPositionY--;
+                if (movementDirection == Direction.None)
+                {
                     break;
-                case Direction.Right:
-                    bullPositionX++;
-                    break;
-                case Direction.Down:
-                    bullPositionY++;
-                    break;
-                case Direction.Left:
-                    bullPositionX--;
-                    break;
-                default:
-                    break;
-            }
+                }
 
-            var cellToStep = Maze[bullPositionX, bullPositionY];
+                var bullPositionX = X;
+                var bullPositionY = Y;
 
-            if (cellToStep?.TryToStep() ?? false)
-            {
-                X = bullPositionX;
-                Y = bullPositionY;
-            }
-            else
-            {
-                DetermineMovementDirection(X, Y);
+                switch (movementDirection)
+                {
+                    case Direction.Up:
+                        bullPositionY--;
+                        break;
+                    case Direction.Right:
+                        bullPositionX++;
+                        break;
+                    case Direction.Down:
+                        bullPositionY++;
+                        break;
+                    case Direction.Left:
+                        bullPositionX--;
+                        break;
+                    default:
+                        break;
+                }
+
+                var cellToStep = Maze[bullPositionX, bullPositionY];
+
+                if (cellToStep?.TryToStep() ?? false)
+                {
+                    X = bullPositionX;
+                    Y = bullPositionY;
+                    break;
+                }
+                else
+                {
+                    DetermineMovementDirection(X, Y);
+                }
             }
         }
 
@@ -87,6 +96,10 @@ namespace ConsoleMaze.Maze.Cells.Enemies
                 {
                     movementDirection = Direction.Up;
                 }
+            }
+            else
+            {
+                movementDirection = Direction.None;
             }
         }
     }

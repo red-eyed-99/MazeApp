@@ -8,6 +8,7 @@ namespace ConsoleMaze.Maze
 {
     public enum Direction
     {
+        None,
         Up,
         Right,
         Down,
