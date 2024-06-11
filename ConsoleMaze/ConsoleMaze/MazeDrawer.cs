@@ -86,34 +86,33 @@ namespace ConsoleMaze
             ShowHeroStatus(maze);
         }
 
-        public void Redraw(IMazeLevel maze, BaseCell cell)
+        public void Redraw(MazeLevel maze, List<int[]> unitsBeforeStep)
         {
-            ShowMessage(maze);
+            foreach (var cell in unitsBeforeStep)
+            {
+                var currentCell = maze.GetCellOrUnit(cell[0], cell[1]);
+                RedrawCell(currentCell);
+            }
 
-            Console.SetCursorPosition(cell.X, cell.Y + 1);
-
-            cell = maze[cell.X, cell.Y];
-
-            Console.ForegroundColor = GetColorByCellType(cell);
-            Console.Write(GetSymbolByCellType(cell));
-
-            Console.ForegroundColor = GetColorByCellType(maze.Hero);
-            Console.SetCursorPosition(maze.Hero.X, maze.Hero.Y + 1);
-            Console.Write("@");
-            Console.ResetColor();
+            RedrawCell(maze.Hero);
 
             foreach (var enemy in maze.Enemies)
             {
-                Console.ForegroundColor = GetColorByCellType(enemy);
-                Console.SetCursorPosition(enemy.X, enemy.Y + 1);
-                Console.Write(GetSymbolByCellType(enemy));
+                RedrawCell(enemy);
             }
 
             Console.ResetColor();
 
             ShowHeroStatus(maze);
         }
-      
+
+        public void RedrawCell(IBaseCell cell)
+        {
+            Console.SetCursorPosition(cell.X, cell.Y + 1);
+            Console.ForegroundColor = GetColorByCellType(cell);
+            Console.Write(GetSymbolByCellType(cell));
+        }
+
         private ConsoleColor GetColorByCellType(IBaseCell cell)
         {
             return ColorSymbolDictionary[cell.GetType()];
@@ -124,19 +123,11 @@ namespace ConsoleMaze
             return TypeSymbolDictionary[cell.GetType()];
         }
 
-        private void ShowMessage(IMazeLevel maze)
+        public void ShowMessage(MazeLevel maze)
         {
             Console.SetCursorPosition(0, 0);
             Console.ResetColor();
-
-            if (maze.Message == string.Empty)
-            {
-                Console.Write(new string(' ', Console.BufferWidth));
-            }
-            else
-            {
-                Console.Write(maze.Message);
-            }
+            Console.Write(maze.Message + new string(' ', !string.IsNullOrEmpty(maze.Message) ? Console.BufferWidth - maze.Message.Length : Console.BufferWidth));
 
             maze.Message = string.Empty;
         }
