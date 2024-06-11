@@ -119,7 +119,6 @@ namespace ConsoleMaze.Maze
                 Enemies.ForEach(x => x.Step());
 
                 drawer.ShowMessage(this);
-                drawer.Redraw(this, cellsToRedrawCoordinates);
             }
 
             if (cellToStep is WeakWall weakWall)
@@ -130,9 +129,10 @@ namespace ConsoleMaze.Maze
                 if (weakWall.Durability == 0)
                 {
                     cellsToRedrawCoordinates.Add([cellToStep.X, cellToStep.Y]);
-                    drawer.Redraw(this, cellsToRedrawCoordinates);
                 }
-            }     
+            }
+
+            drawer.Redraw(this, cellsToRedrawCoordinates);
         }
     }
 }
