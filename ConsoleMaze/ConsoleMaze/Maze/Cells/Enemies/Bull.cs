@@ -30,7 +30,7 @@ namespace ConsoleMaze.Maze.Cells.Enemies
             {
                 if (movementDirection == Direction.None)
                 {
-                    break;
+                    DetermineMovementDirection(X, Y);
                 }
 
                 var bullPositionX = X;
@@ -65,6 +65,11 @@ namespace ConsoleMaze.Maze.Cells.Enemies
                 else
                 {
                     DetermineMovementDirection(X, Y);
+
+                    if (movementDirection == Direction.None)
+                    {
+                        break;
+                    }
                 }
             }
         }
