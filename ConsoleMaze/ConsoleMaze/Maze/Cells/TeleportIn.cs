@@ -12,10 +12,13 @@ namespace ConsoleMaze.Maze.Cells
 
         public TeleportIn(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep()
+        public override bool TryToStep(IBaseCell unit)
         {
-            Maze.Hero.X = TeleportOut.X;
-            Maze.Hero.Y = TeleportOut.Y;
+            if (unit is Hero)
+            {
+                Maze.Hero.X = TeleportOut.X;
+                Maze.Hero.Y = TeleportOut.Y;
+            }
 
             return true;
         }

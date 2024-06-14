@@ -10,7 +10,7 @@ namespace ConsoleMaze.Maze.Cells
     {
         public Bed(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep()
+        public override bool TryToStep(IBaseCell unit)
         {
             Maze.Hero.FatiguePoint = 0;
             Maze[X, Y] = new Ground(X, Y, Maze);

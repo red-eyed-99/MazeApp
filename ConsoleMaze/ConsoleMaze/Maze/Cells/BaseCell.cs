@@ -20,6 +20,6 @@ namespace ConsoleMaze.Maze.Cells
             Maze = maze;
         }
 
-        public abstract bool TryToStep();
+        public abstract bool TryToStep(IBaseCell unit);
     }
 }

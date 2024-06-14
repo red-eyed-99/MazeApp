@@ -88,6 +88,11 @@ namespace ConsoleMaze
 
         public void Redraw(MazeLevel maze, List<int[]> cellsToRedrawCoordinates)
         {
+            foreach (var enemy in maze.Enemies)
+            {
+                RedrawCell(enemy);
+            }
+
             foreach (var cell in cellsToRedrawCoordinates)
             {
                 var currentCell = maze.GetCellOrUnit(cell[0], cell[1]);
@@ -95,11 +100,6 @@ namespace ConsoleMaze
             }
 
             RedrawCell(maze.Hero);
-
-            foreach (var enemy in maze.Enemies)
-            {
-                RedrawCell(enemy);
-            }
 
             Console.ResetColor();
 

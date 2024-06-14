@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleMaze.Maze.Cells.Enemies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,9 +28,17 @@ namespace ConsoleMaze.Maze.Cells
             Money = money;
         }
 
-        public override bool TryToStep()
+        public override bool TryToStep(IBaseCell unit)
         {
-            throw new NotImplementedException();
+            if (unit is BaseEnemy)
+            {
+                if (HealthPoint > 0)
+                {
+                    HealthPoint--;
+                }
+            }
+
+            return true;
         }
     }
 }

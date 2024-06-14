@@ -32,7 +32,7 @@ namespace ConsoleMaze.Test.Maze.Cells
             var trap = new Trap(0, 0, mazeMock.Object);
 
             //Act
-            var answer = trap.TryToStep();
+            var answer = trap.TryToStep(Hero);
 
             //Assert
             Assert.AreEqual(true, answer, "We must have posibility to step on the trap");

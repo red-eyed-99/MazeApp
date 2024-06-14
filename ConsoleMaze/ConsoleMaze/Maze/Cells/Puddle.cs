@@ -10,9 +10,12 @@ namespace ConsoleMaze.Maze.Cells
     {
         public Puddle(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep()
+        public override bool TryToStep(IBaseCell unit)
         {
-            Maze.Message = "wap wap";
+            if (unit is Hero)
+            {
+                Maze.Message = "wap wap";
+            }
             return true;
         }
     }

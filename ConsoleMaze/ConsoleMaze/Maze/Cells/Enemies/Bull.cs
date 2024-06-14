@@ -19,9 +19,14 @@ namespace ConsoleMaze.Maze.Cells.Enemies
             DetermineMovementDirection(X, Y);
         }
 
-        public override bool TryToStep()
+        public override bool TryToStep(IBaseCell unit)
         {
-            throw new NotImplementedException();
+            if (unit is Hero hero && hero.HealthPoint > 0)
+            {
+                hero.HealthPoint--;
+            }
+
+            return true;
         }
 
         public override void Step()
@@ -54,9 +59,10 @@ namespace ConsoleMaze.Maze.Cells.Enemies
                         break;
                 }
 
-                var cellToStep = Maze[bullPositionX, bullPositionY];
+                //var cellToStep = Maze[bullPositionX, bullPositionY];
+                var cellToStep = Maze.GetCellOrUnit(bullPositionX, bullPositionY);
 
-                if (cellToStep?.TryToStep() ?? false)
+                if (cellToStep?.TryToStep(this) ?? false)
                 {
                     X = bullPositionX;
                     Y = bullPositionY;
