@@ -42,6 +42,7 @@ namespace ConsoleMaze.Maze
             maze.Hero = hero;
 
             BuildBull();
+            BuildSlime();
 
             return maze;
         }
@@ -237,6 +238,14 @@ namespace ConsoleMaze.Maze
             var posY = random.Next(0, maze.Height - 1);
 
             maze.Enemies.Add(new Bull(posX, posY, maze));
+        }
+
+        private void BuildSlime()
+        {
+            var posX = random.Next(0, maze.Width - 1);
+            var posY = random.Next(0, maze.Height - 1);
+
+            maze.Enemies.Add(new Slime(posX, posY, maze));
         }
 
         private BaseCell GetRandom(List<BaseCell> cells)

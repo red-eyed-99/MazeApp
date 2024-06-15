@@ -10,7 +10,7 @@ namespace ConsoleMaze.Maze.Cells
     {
         public GreedyHealer(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep(IBaseCell unit)
+        public override bool TryToStep(BaseCell unit)
         {
             if (Maze.Hero.HealthPoint != Maze.Hero.MaxHealth && Maze.Hero.Money > 1)
             {

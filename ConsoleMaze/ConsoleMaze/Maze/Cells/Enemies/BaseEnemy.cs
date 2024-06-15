@@ -8,6 +8,8 @@ namespace ConsoleMaze.Maze.Cells.Enemies
 {
     public abstract class BaseEnemy : BaseCell
     {
+        public bool DealsDamage { get; set; }
+
         public BaseEnemy(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
         public abstract void Step();

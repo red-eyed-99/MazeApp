@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze.Cells
 {
-    public class Hero : BaseCell, IHero
+    public class Hero : BaseCell
     {
         public int Money { get; set; }
 
@@ -28,9 +28,9 @@ namespace ConsoleMaze.Maze.Cells
             Money = money;
         }
 
-        public override bool TryToStep(IBaseCell unit)
+        public override bool TryToStep(BaseCell unit)
         {
-            if (unit is BaseEnemy)
+            if (unit is BaseEnemy enemy && enemy.DealsDamage)
             {
                 if (HealthPoint > 0)
                 {

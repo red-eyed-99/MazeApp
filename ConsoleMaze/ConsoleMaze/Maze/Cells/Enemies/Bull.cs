@@ -16,14 +16,20 @@ namespace ConsoleMaze.Maze.Cells.Enemies
 
         public Bull(int x, int y, MazeLevel maze) : base(x, y, maze)
         {
+            DealsDamage = true;
             DetermineMovementDirection(X, Y);
         }
 
-        public override bool TryToStep(IBaseCell unit)
+        public override bool TryToStep(BaseCell unit)
         {
             if (unit is Hero hero && hero.HealthPoint > 0)
             {
                 hero.HealthPoint--;
+            }
+
+            if (unit is BaseEnemy)
+            {
+                return false;
             }
 
             return true;
@@ -59,7 +65,6 @@ namespace ConsoleMaze.Maze.Cells.Enemies
                         break;
                 }
 
-                //var cellToStep = Maze[bullPositionX, bullPositionY];
                 var cellToStep = Maze.GetCellOrUnit(bullPositionX, bullPositionY);
 
                 if (cellToStep?.TryToStep(this) ?? false)
