@@ -35,6 +35,7 @@ namespace ConsoleMaze
                 { typeof(Tavern), "T" },
 
                 { typeof(Bull), "Ʊ" },
+                { typeof(Slime), "ө" }
             };
 
         public Dictionary<Type, ConsoleColor> ColorSymbolDictionary =
@@ -61,6 +62,7 @@ namespace ConsoleMaze
                 { typeof(Tavern), ConsoleColor.White },
 
                 { typeof(Bull), ConsoleColor.Red },
+                { typeof(Slime), ConsoleColor.Red },
             };
 
         public void Draw(MazeLevel maze)
@@ -106,19 +108,19 @@ namespace ConsoleMaze
             ShowHeroStatus(maze);
         }
 
-        public void RedrawCell(IBaseCell cell)
+        public void RedrawCell(BaseCell cell)
         {
             Console.SetCursorPosition(cell.X, cell.Y + 1);
             Console.ForegroundColor = GetColorByCellType(cell);
             Console.Write(GetSymbolByCellType(cell));
         }
 
-        private ConsoleColor GetColorByCellType(IBaseCell cell)
+        private ConsoleColor GetColorByCellType(BaseCell cell)
         {
             return ColorSymbolDictionary[cell.GetType()];
         }
 
-        private string GetSymbolByCellType(IBaseCell cell)
+        private string GetSymbolByCellType(BaseCell cell)
         {
             return TypeSymbolDictionary[cell.GetType()];
         }
@@ -132,7 +134,7 @@ namespace ConsoleMaze
             maze.Message = string.Empty;
         }
 
-        private void ShowHeroStatus(IMazeLevel maze)
+        private void ShowHeroStatus(MazeLevel maze)
         {
             for (int afterMazeLineNumber = 2; afterMazeLineNumber <= 4; afterMazeLineNumber++)
             {

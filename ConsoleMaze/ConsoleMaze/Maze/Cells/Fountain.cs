@@ -10,7 +10,7 @@ namespace ConsoleMaze.Maze.Cells
     {
         public Fountain(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep(IBaseCell unit)
+        public override bool TryToStep(BaseCell unit)
         {
             if (Maze.Hero.FatiguePoint > 0)
             {

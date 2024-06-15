@@ -6,6 +6,6 @@
         int X { get; set; }
         int Y { get; set; }
 
-        bool TryToStep(IBaseCell unit);
+        bool TryToStep(BaseCell unit);
     }
 }

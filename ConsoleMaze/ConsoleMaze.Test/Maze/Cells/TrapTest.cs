@@ -19,8 +19,8 @@ namespace ConsoleMaze.Test.Maze.Cells
         public void TryToStepTest(int hpInit, int hpResult)
         {
             // Preparing
-            var mazeMock = new Mock<IMazeLevel>();
-            var heroMock = new Mock<IHero>();
+            var mazeMock = new Mock<MazeLevel>();
+            var heroMock = new Mock<Hero>();
 
             heroMock.SetupProperty(x => x.HealthPoint);
             heroMock.Object.HealthPoint = hpInit;
@@ -32,7 +32,7 @@ namespace ConsoleMaze.Test.Maze.Cells
             var trap = new Trap(0, 0, mazeMock.Object);
 
             //Act
-            var answer = trap.TryToStep(Hero);
+            var answer = trap.TryToStep(heroMock);
 
             //Assert
             Assert.AreEqual(true, answer, "We must have posibility to step on the trap");

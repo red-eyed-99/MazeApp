@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze
 {
-    public class MazeLevel : IMazeLevel
+    public class MazeLevel
     {
         public List<BaseCell> Cells { get; set; } = new List<BaseCell>();
 
@@ -17,11 +17,11 @@ namespace ConsoleMaze.Maze
         public int Width { get; set; }
         public int Height { get; set; }
 
-        public IHero Hero { get; set; }
+        public Hero Hero { get; set; }
 
         public string Message { get; set; }
 
-        public IBaseCell GetCellOrUnit(int x, int y)
+        public BaseCell GetCellOrUnit(int x, int y)
         {
             if (Hero.X == x && Hero.Y == y)
             {
@@ -99,7 +99,6 @@ namespace ConsoleMaze.Maze
                     break;
             }
 
-            //var cellToStep = this[heroPositionX, heroPositionY];
             var cellToStep = GetCellOrUnit(heroPositionX, heroPositionY);
 
             var drawer = new MazeDrawer();

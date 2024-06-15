@@ -15,7 +15,7 @@ namespace ConsoleMaze.Maze.Cells
 
         public int CoinCount { get; set; }
 
-        public override bool TryToStep(IBaseCell unit)
+        public override bool TryToStep(BaseCell unit)
         {
             if (unit is Hero)
             {
