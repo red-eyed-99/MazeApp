@@ -40,7 +40,8 @@ namespace ConsoleMaze.Maze
 
             var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
             maze.Hero = hero;
-            maze.Enemies.Add(new Bull(9, 9, maze));
+
+            BuildBull();
 
             return maze;
         }
@@ -228,6 +229,14 @@ namespace ConsoleMaze.Maze
             var grounds = maze.Cells.Where(x => x is Ground).ToList();
             var randomGround = GetRandom(grounds);
             maze[randomGround.X, randomGround.Y] = new Tavern(randomGround.X, randomGround.Y, maze);
+        }
+
+        private void BuildBull()
+        {
+            var posX = random.Next(0, maze.Width - 1);
+            var posY = random.Next(0, maze.Height - 1);
+
+            maze.Enemies.Add(new Bull(posX, posY, maze));
         }
 
         private BaseCell GetRandom(List<BaseCell> cells)
