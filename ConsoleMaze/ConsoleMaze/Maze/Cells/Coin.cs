@@ -15,11 +15,14 @@ namespace ConsoleMaze.Maze.Cells
 
         public int CoinCount { get; set; }
 
-        public override bool TryToStep()
+        public override bool TryToStep(IBaseCell unit)
         {
-            Maze.Message = "oh, coin!";
-            Maze.Hero.Money += CoinCount;
-            Maze[X, Y] = new Ground(X, Y, Maze);
+            if (unit is Hero)
+            {
+                Maze.Message = "oh, coin!";
+                Maze.Hero.Money += CoinCount;
+                Maze[X, Y] = new Ground(X, Y, Maze); 
+            }
             return true;
         }
     }

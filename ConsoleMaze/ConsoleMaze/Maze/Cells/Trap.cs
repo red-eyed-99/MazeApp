@@ -10,7 +10,7 @@ namespace ConsoleMaze.Maze.Cells
     {
         public Trap(int x, int y, IMazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep()
+        public override bool TryToStep(IBaseCell unit)
         {
             if (Maze.Hero.HealthPoint > 0)
             {

@@ -99,11 +99,12 @@ namespace ConsoleMaze.Maze
                     break;
             }
 
-            var cellToStep = this[heroPositionX, heroPositionY];
+            //var cellToStep = this[heroPositionX, heroPositionY];
+            var cellToStep = GetCellOrUnit(heroPositionX, heroPositionY);
 
             var drawer = new MazeDrawer();
 
-            if (cellToStep?.TryToStep() ?? false)
+            if (cellToStep?.TryToStep(Hero) ?? false)
             {
                 if (cellToStep is not TeleportIn)
                 {

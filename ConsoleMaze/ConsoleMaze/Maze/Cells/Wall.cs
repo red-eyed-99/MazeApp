@@ -10,7 +10,7 @@ namespace ConsoleMaze.Maze.Cells
     {
         public Wall(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep()
+        public override bool TryToStep(IBaseCell unit)
         {
             return false;
         }

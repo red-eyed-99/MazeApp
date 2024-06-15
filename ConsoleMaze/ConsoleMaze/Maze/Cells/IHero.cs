@@ -8,6 +8,6 @@
         int MaxHealth { get; set; }
         int Money { get; set; }
 
-        bool TryToStep();
+        bool TryToStep(IBaseCell unit);
     }
 }
