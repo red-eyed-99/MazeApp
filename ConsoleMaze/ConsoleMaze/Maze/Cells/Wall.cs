@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleMaze.Maze.Cells.Enemies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,11 @@ namespace ConsoleMaze.Maze.Cells
 
         public override bool TryToStep(BaseCell unit)
         {
+            if (unit is WallWorm)
+            {
+                return true;
+            }
+
             return false;
         }
     }
