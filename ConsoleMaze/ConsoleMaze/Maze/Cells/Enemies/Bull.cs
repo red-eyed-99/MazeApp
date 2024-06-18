@@ -96,7 +96,11 @@ namespace ConsoleMaze.Maze.Cells.Enemies
             {
                 var randomCellToMove = availableCellsToMove[random.Next(availableCellsToMove.Count)];
 
-                if (randomCellToMove.X > bullPositionX)
+                if (availableCellsToMove.Count == 1 && Maze.GetCellOrUnit(randomCellToMove.X, randomCellToMove.Y) is BaseEnemy)
+                {
+                    movementDirection = Direction.None;
+                }
+                else if (randomCellToMove.X > bullPositionX)
                 {
                     movementDirection = Direction.Right;
                 }
