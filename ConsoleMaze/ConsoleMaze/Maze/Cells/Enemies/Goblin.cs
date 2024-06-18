@@ -41,14 +41,14 @@ namespace ConsoleMaze.Maze.Cells.Enemies
                                     || Math.Abs(cell.X - posXBeforeStep) == 1 && cell.Y == posYBeforeStep)
                                     && cell is not Wall
                                     && cell is not WeakWall
-                                    && cell.X != Maze.Hero.X && cell.Y != Maze.Hero.Y)
+                                    && Maze.GetCellOrUnit(cell.X, cell.Y) is not Hero)
                                 .ToList();
 
                 if (availableCellsToMove.Any())
                 {
                     if (X == Maze.Hero.X || Y == Maze.Hero.Y)
                     {
-                        availableCellsToMove
+                        _ = availableCellsToMove
                             .Where(cell => X == Maze.Hero.X
                             ?
                                 Math.Abs(cell.Y - Maze.Hero.Y) == Math.Abs(Y - Maze.Hero.Y) || Math.Abs(cell.Y - Maze.Hero.Y) > Math.Abs(Y - Maze.Hero.Y)
@@ -75,7 +75,7 @@ namespace ConsoleMaze.Maze.Cells.Enemies
 
         private bool HeroIsNearby()
         {
-            return Math.Abs(X - Maze.Hero.X) <= 2 || Math.Abs(Y - Maze.Hero.Y) <= 2;
+            return todo;               
         }
     }
 }
