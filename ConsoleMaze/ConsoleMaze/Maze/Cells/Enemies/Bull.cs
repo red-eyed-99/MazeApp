@@ -10,8 +10,6 @@ namespace ConsoleMaze.Maze.Cells.Enemies
 {
     public class Bull : BaseEnemy
     {
-        private Random random = new Random();
-
         private Direction movementDirection;
 
         public Bull(int x, int y, MazeLevel maze) : base(x, y, maze)

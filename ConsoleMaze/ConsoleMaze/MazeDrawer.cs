@@ -36,7 +36,8 @@ namespace ConsoleMaze
 
                 { typeof(Bull), "Ʊ" },
                 { typeof(Slime), "ө" },
-                { typeof(WallWorm), "շ" }
+                { typeof(WallWorm), "շ" },
+                { typeof(Goblin), "ʛ" }
             };
 
         public Dictionary<Type, ConsoleColor> ColorSymbolDictionary =
@@ -64,7 +65,8 @@ namespace ConsoleMaze
 
                 { typeof(WallWorm), ConsoleColor.Red },
                 { typeof(Slime), ConsoleColor.Red },
-                { typeof(Bull), ConsoleColor.Red }
+                { typeof(Bull), ConsoleColor.Red },
+                { typeof(Goblin), ConsoleColor.Red }
             };
 
         public void Draw(MazeLevel maze)
