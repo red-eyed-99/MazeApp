@@ -138,7 +138,7 @@ namespace ConsoleMaze.Maze
         public void SkipHeroStep()
         {
             var cellsToRedrawCoordinates = new List<int[]>();
-;
+
             foreach (var enemy in Enemies)
             {
                 cellsToRedrawCoordinates.Add([enemy.X, enemy.Y]);
