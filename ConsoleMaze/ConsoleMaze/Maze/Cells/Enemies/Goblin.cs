@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,12 @@ namespace ConsoleMaze.Maze.Cells.Enemies
                 return false;
             }
 
+            if (HealthPoint == 0)
+            {
+                Maze[X, Y] = new Coin(X, Y, Maze, 10);
+                Maze.Enemies.Remove(Maze.Enemies.Single(enemy => enemy.X == X && enemy.Y == Y));
+            }
+
             return true;
         }
 
@@ -39,43 +46,49 @@ namespace ConsoleMaze.Maze.Cells.Enemies
                 var availableCellsToMove = Maze.Cells
                                 .Where(cell => (cell.X == posXBeforeStep && Math.Abs(cell.Y - posYBeforeStep) == 1
                                     || Math.Abs(cell.X - posXBeforeStep) == 1 && cell.Y == posYBeforeStep)
+
+                                    && (Math.Abs(cell.Y - Maze.Hero.Y) > Math.Abs(Y - Maze.Hero.Y)
+                                    || Math.Abs(cell.X - Maze.Hero.X) > Math.Abs(X - Maze.Hero.X))
+
                                     && cell is not Wall
                                     && cell is not WeakWall
                                     && Maze.GetCellOrUnit(cell.X, cell.Y) is not Hero)
                                 .ToList();
 
+
                 if (availableCellsToMove.Any())
                 {
-                    if (X == Maze.Hero.X || Y == Maze.Hero.Y)
+                    var randomCellToMove = availableCellsToMove[random.Next(availableCellsToMove.Count)];
+
+                    var cellToStep = Maze.GetCellOrUnit(randomCellToMove.X, randomCellToMove.Y);
+
+                    if (cellToStep?.TryToStep(this) ?? false)
                     {
-                        _ = availableCellsToMove
-                            .Where(cell => X == Maze.Hero.X
-                            ?
-                                Math.Abs(cell.Y - Maze.Hero.Y) == Math.Abs(Y - Maze.Hero.Y) || Math.Abs(cell.Y - Maze.Hero.Y) > Math.Abs(Y - Maze.Hero.Y)
-                            :
-                                Math.Abs(cell.X - Maze.Hero.X) == Math.Abs(X - Maze.Hero.X) || Math.Abs(cell.X - Maze.Hero.X) > Math.Abs(X - Maze.Hero.X));
-
-                        var randomCellToMove = availableCellsToMove[random.Next(availableCellsToMove.Count)];
-
-                        var cellToStep = Maze.GetCellOrUnit(randomCellToMove.X, randomCellToMove.Y);
-
-                        if (cellToStep?.TryToStep(this) ?? false)
-                        {
-                            X = randomCellToMove.X;
-                            Y = randomCellToMove.Y;
-                        }
+                        X = randomCellToMove.X;
+                        Y = randomCellToMove.Y;
                     }
                 }
-                // находим одинак коорд (x или y) +
-                // значение по модулю разности противоположных одинаковой координате координат гоблина и героя должно либо остаться либо увеличиться +
-                // если нет совпадающих коорд то четверти
-                // предусмотреть возможность идти в стророну героя при отстутствии другого выбора (если разница коорд между гоб и гер 4 клетки)        
-            }
+
+            }        
         }
 
         private bool HeroIsNearby()
         {
-            return todo;               
+            var cellsNearGoblin = Maze.Cells
+                                .Where(cell => (cell.X == X && Math.Abs(cell.Y - Y) <= 2)
+                                    || (Math.Abs(cell.X - X) <= 2 && cell.Y == Y)
+                                    || (Math.Abs(cell.X - X) == 1 && Math.Abs(cell.Y - Y) == 1))
+                                .ToList();
+
+            if (cellsNearGoblin.SingleOrDefault(cell => cell.X == Maze.Hero.X && cell.Y == Maze.Hero.Y) is not null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
+
