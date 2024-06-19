@@ -41,6 +41,9 @@ namespace ConsoleMaze
                     case ConsoleKey.S:
                         maze.HeroStep(Direction.Down);
                         break;
+                    case ConsoleKey.Spacebar:
+                        maze.SkipHeroStep();
+                        break;
                 }
             }
         }

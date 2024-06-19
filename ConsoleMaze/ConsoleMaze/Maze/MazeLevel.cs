@@ -134,5 +134,21 @@ namespace ConsoleMaze.Maze
 
             drawer.Redraw(this, cellsToRedrawCoordinates);
         }
+
+        public void SkipHeroStep()
+        {
+            var cellsToRedrawCoordinates = new List<int[]>();
+;
+            foreach (var enemy in Enemies)
+            {
+                cellsToRedrawCoordinates.Add([enemy.X, enemy.Y]);
+            }
+
+            var drawer = new MazeDrawer();
+
+            Enemies.ForEach(x => x.Step());
+
+            drawer.Redraw(this, cellsToRedrawCoordinates);
+        }
     }
 }
