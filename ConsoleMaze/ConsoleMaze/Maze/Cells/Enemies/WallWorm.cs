@@ -8,10 +8,6 @@ namespace ConsoleMaze.Maze.Cells.Enemies
 {
     public class WallWorm : BaseEnemy
     {
-        private Random random = new Random();
-
-        public int HealthPoint { get; set; }
-
         public WallWorm(int x, int y, MazeLevel maze) : base(x, y, maze)
         {
             DealsDamage = false;

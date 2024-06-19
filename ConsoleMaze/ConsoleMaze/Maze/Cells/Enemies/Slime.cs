@@ -9,10 +9,6 @@ namespace ConsoleMaze.Maze.Cells.Enemies
 {
     public class Slime : BaseEnemy
     {
-        private Random random = new Random();
-
-        public int HealthPoint { get; set; }
-
         public Slime(int x, int y, MazeLevel maze) : base(x, y, maze)
         {
             HealthPoint = 1;
