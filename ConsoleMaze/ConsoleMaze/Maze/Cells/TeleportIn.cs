@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze.Cells
 {
-    public class Trap : BaseCell
+    public class TeleportIn : BaseCell
     {
-        public Trap(int x, int y, IMazeLevel maze) : base(x, y, maze) { }
+        public TeleportOut TeleportOut { get; set; }
+
+        public TeleportIn(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
         public override bool TryToStep(IBaseCell unit)
         {
-            if (Maze.Hero.HealthPoint > 0)
+            if (unit is Hero)
             {
-                Maze.Hero.HealthPoint--;
+                Maze.Hero.X = TeleportOut.X;
+                Maze.Hero.Y = TeleportOut.Y;
             }
-
-            Maze.ReplaceCell(new Ground(X, Y, Maze));
 
             return true;
         }

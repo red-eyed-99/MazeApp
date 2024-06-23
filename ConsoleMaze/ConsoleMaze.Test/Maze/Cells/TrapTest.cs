@@ -33,7 +33,7 @@ namespace ConsoleMaze.Test.Maze.Cells
 
             //Act
             var answer = trap.TryToStep(heroMock.Object);
-            
+
             //Assert
             Assert.That(answer, Is.True, "We must have posibility to step on the trap");
             Assert.That(hpResult, Is.EqualTo(heroMock.Object.HealthPoint));

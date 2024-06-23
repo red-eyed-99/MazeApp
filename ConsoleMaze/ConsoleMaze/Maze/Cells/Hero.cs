@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleMaze.Maze.Cells.Enemies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze.Cells
 {
-    public class Hero : BaseCell
+    public class Hero : BaseCell, IHero
     {
         public int Money { get; set; }
 
@@ -18,17 +19,26 @@ namespace ConsoleMaze.Maze.Cells
 
         public int MaxFatigue { get; set; }
 
-        public Hero(int x, int y, MazeLevel maze, int heroHealth, int maxHealth, int fatiguePoint, int maxFatigue) : base(x, y, maze)
+        public Hero(int x, int y, MazeLevel maze, int heroHealth, int maxHealth, int fatiguePoint, int maxFatigue, int money) : base(x, y, maze)
         {
             HealthPoint = heroHealth;
             MaxHealth = maxHealth;
             FatiguePoint = fatiguePoint;
             MaxFatigue = maxFatigue;
+            Money = money;
         }
 
-        public override bool TryToStep()
+        public override bool TryToStep(IBaseCell unit)
         {
-            throw new NotImplementedException();
+            if (unit is BaseEnemy enemy && enemy.DealsDamage)
+            {
+                if (HealthPoint > 0)
+                {
+                    HealthPoint--;
+                }
+            }
+
+            return true;
         }
     }
 }

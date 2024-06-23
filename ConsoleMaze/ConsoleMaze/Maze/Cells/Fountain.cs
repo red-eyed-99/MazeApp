@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze.Cells
 {
-    public class Trap : BaseCell
+    public class Fountain : BaseCell
     {
-        public Trap(int x, int y, IMazeLevel maze) : base(x, y, maze) { }
+        public Fountain(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
         public override bool TryToStep(IBaseCell unit)
         {
-            if (Maze.Hero.HealthPoint > 0)
+            if (Maze.Hero.FatiguePoint > 0)
             {
-                Maze.Hero.HealthPoint--;
+                Maze.Hero.FatiguePoint--;
+                Maze[X, Y] = new Ground(X, Y, Maze);
             }
-
-            Maze.ReplaceCell(new Ground(X, Y, Maze));
 
             return true;
         }

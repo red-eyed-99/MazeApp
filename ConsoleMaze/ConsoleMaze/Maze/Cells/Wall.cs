@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleMaze.Maze.Cells.Enemies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,13 @@ namespace ConsoleMaze.Maze.Cells
     {
         public Wall(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep()
+        public override bool TryToStep(IBaseCell unit)
         {
+            if (unit is WallWorm)
+            {
+                return true;
+            }
+
             return false;
         }
     }

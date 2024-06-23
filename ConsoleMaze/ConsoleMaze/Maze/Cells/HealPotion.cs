@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze.Cells
 {
-    public class Trap : BaseCell
+    public class HealPotion : BaseCell
     {
-        public Trap(int x, int y, IMazeLevel maze) : base(x, y, maze) { }
+        public HealPotion(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
         public override bool TryToStep(IBaseCell unit)
         {
-            if (Maze.Hero.HealthPoint > 0)
+            if (Maze.Hero.HealthPoint < Maze.Hero.MaxHealth)
             {
-                Maze.Hero.HealthPoint--;
+                Maze.Hero.HealthPoint++;
+                Maze[X, Y] = new Ground(X, Y, Maze);
             }
-
-            Maze.ReplaceCell(new Ground(X, Y, Maze));
-
+            
             return true;
         }
     }

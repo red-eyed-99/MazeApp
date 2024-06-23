@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze.Cells
 {
-    public class VitalityPotion : BaseCell
+    public class Puddle : BaseCell
     {
-        public VitalityPotion(int x, int y, MazeLevel maze) : base(x, y, maze) { }
+        public Puddle(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
         public override bool TryToStep(IBaseCell unit)
         {
-            Maze.Hero.FatiguePoint = 0;
-            Maze[X, Y] = new Ground(X, Y, Maze);
+            if (unit is Hero)
+            {
+                Maze.Message = "wap wap";
+            }
             return true;
         }
     }
