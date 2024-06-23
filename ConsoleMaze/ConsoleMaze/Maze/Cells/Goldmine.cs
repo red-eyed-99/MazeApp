@@ -8,9 +8,9 @@ namespace ConsoleMaze.Maze.Cells
 {
     public class Goldmine : BaseCell
     {
-        int Durability { get; set; } = 3;
+        public int Durability { get; set; } = 3;
 
-        public Goldmine(int x, int y, MazeLevel maze) : base(x, y, maze) { }
+        public Goldmine(int x, int y, IMazeLevel maze) : base(x, y, maze) { }
 
         public override bool TryToStep(IBaseCell unit)
         {
@@ -19,7 +19,7 @@ namespace ConsoleMaze.Maze.Cells
 
             if (Durability == 0)
             {
-                Maze[X, Y] = new Ground(X, Y, Maze);
+                Maze.ReplaceCell(new Ground(X, Y, Maze));
             }
 
             return true;
