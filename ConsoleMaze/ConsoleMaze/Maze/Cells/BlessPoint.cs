@@ -12,7 +12,10 @@ namespace ConsoleMaze.Maze.Cells
 
         public override bool TryToStep(IBaseCell unit)
         {
-            Maze.Hero.HealthPoint = Maze.Hero.MaxHealth;
+            if (Maze.Hero.HealthPoint < Maze.Hero.MaxHealth)
+            {
+                Maze.Hero.HealthPoint = Maze.Hero.MaxHealth;
+            }
 
             return true;
         }
