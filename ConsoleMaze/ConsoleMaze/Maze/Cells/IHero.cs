@@ -7,7 +7,5 @@
         int MaxFatigue { get; set; }
         int MaxHealth { get; set; }
         int Money { get; set; }
-
-        bool TryToStep(BaseCell unit);
     }
 }

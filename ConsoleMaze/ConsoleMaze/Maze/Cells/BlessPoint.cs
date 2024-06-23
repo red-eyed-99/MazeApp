@@ -10,7 +10,7 @@ namespace ConsoleMaze.Maze.Cells
     {
         public BlessPoint(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep(BaseCell unit)
+        public override bool TryToStep(IBaseCell unit)
         {
             Maze.Hero.HealthPoint = Maze.Hero.MaxHealth;
 

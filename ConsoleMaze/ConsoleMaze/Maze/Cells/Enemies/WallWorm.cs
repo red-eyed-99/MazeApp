@@ -13,7 +13,7 @@ namespace ConsoleMaze.Maze.Cells.Enemies
             DealsDamage = false;
         }
 
-        public override bool TryToStep(BaseCell unit)
+        public override bool TryToStep(IBaseCell unit)
         {
             if (unit is Hero && HealthPoint >= 1)
             {

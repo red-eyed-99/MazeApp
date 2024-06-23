@@ -19,12 +19,12 @@ namespace ConsoleMaze.Test.Maze.Cells
         public void TryToStepTest(int hpInit, int hpResult)
         {
             // Preparing
-            var mazeMock = new Mock<MazeLevel>();
-            var heroMock = new Mock<Hero>();
+            var mazeMock = new Mock<IMazeLevel>();
+            var heroMock = new Mock<IHero>();
 
             heroMock.SetupProperty(x => x.HealthPoint);
             heroMock.Object.HealthPoint = hpInit;
-
+            
             mazeMock
                 .Setup(x => x.Hero)
                 .Returns(heroMock.Object);
@@ -32,11 +32,11 @@ namespace ConsoleMaze.Test.Maze.Cells
             var trap = new Trap(0, 0, mazeMock.Object);
 
             //Act
-            var answer = trap.TryToStep(heroMock);
+            var answer = trap.TryToStep(heroMock.Object);
 
             //Assert
-            Assert.AreEqual(true, answer, "We must have posibility to step on the trap");
-            Assert.AreEqual(hpResult, heroMock.Object.HealthPoint);
+            Assert.That(answer, Is.True, "We must have posibility to step on the trap");
+            Assert.That(hpResult, Is.EqualTo(heroMock.Object.HealthPoint));
             mazeMock.Verify(x => x.ReplaceCell(It.IsAny<BaseCell>()), Times.AtLeastOnce);
         }
     }

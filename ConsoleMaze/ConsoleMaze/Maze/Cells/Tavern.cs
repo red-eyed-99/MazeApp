@@ -10,7 +10,7 @@ namespace ConsoleMaze.Maze.Cells
     {
         public Tavern(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep(BaseCell unit)
+        public override bool TryToStep(IBaseCell unit)
         {
             if (Maze.Hero.Money >= 2 && Maze.Hero.FatiguePoint >= 5)
             {

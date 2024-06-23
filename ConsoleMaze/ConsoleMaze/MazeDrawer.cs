@@ -114,19 +114,19 @@ namespace ConsoleMaze
             ShowHeroStatus(maze);
         }
 
-        public void RedrawCell(BaseCell cell)
+        public void RedrawCell(IBaseCell cell)
         {
             Console.SetCursorPosition(cell.X, cell.Y + 1);
             Console.ForegroundColor = GetColorByCellType(cell);
             Console.Write(GetSymbolByCellType(cell));
         }
 
-        private ConsoleColor GetColorByCellType(BaseCell cell)
+        private ConsoleColor GetColorByCellType(IBaseCell cell)
         {
             return ColorSymbolDictionary[cell.GetType()];
         }
 
-        private string GetSymbolByCellType(BaseCell cell)
+        private string GetSymbolByCellType(IBaseCell cell)
         {
             return TypeSymbolDictionary[cell.GetType()];
         }

@@ -18,7 +18,7 @@ namespace ConsoleMaze.Maze.Cells.Enemies
             DetermineMovementDirection(X, Y);
         }
 
-        public override bool TryToStep(BaseCell unit)
+        public override bool TryToStep(IBaseCell unit)
         {
             if (unit is Hero hero && hero.HealthPoint > 0)
             {

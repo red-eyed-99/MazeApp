@@ -8,9 +8,9 @@ namespace ConsoleMaze.Maze.Cells
 {
     public class Trap : BaseCell
     {
-        public Trap(int x, int y, MazeLevel maze) : base(x, y, maze) { }
+        public Trap(int x, int y, IMazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep(BaseCell unit)
+        public override bool TryToStep(IBaseCell unit)
         {
             if (Maze.Hero.HealthPoint > 0)
             {

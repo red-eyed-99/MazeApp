@@ -8,14 +8,14 @@ namespace ConsoleMaze.Maze.Cells
 {
     public class Coin : BaseCell
     {
-        public Coin(int x, int y, MazeLevel maze, int coinCount) : base(x, y, maze)
+        public Coin(int x, int y, IMazeLevel maze, int coinCount) : base(x, y, maze)
         {
             CoinCount = coinCount;
         }
 
         public int CoinCount { get; set; }
 
-        public override bool TryToStep(BaseCell unit)
+        public override bool TryToStep(IBaseCell unit)
         {
             if (unit is Hero)
             {

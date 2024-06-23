@@ -10,7 +10,7 @@ namespace ConsoleMaze.Maze.Cells
     {
         public HealPotion(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
-        public override bool TryToStep(BaseCell unit)
+        public override bool TryToStep(IBaseCell unit)
         {
             if (Maze.Hero.HealthPoint < Maze.Hero.MaxHealth)
             {
