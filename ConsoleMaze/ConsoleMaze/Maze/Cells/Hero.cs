@@ -19,7 +19,7 @@ namespace ConsoleMaze.Maze.Cells
 
         public int MaxFatigue { get; set; }
 
-        public Hero(int x, int y, MazeLevel maze, int heroHealth, int maxHealth, int fatiguePoint, int maxFatigue, int money) : base(x, y, maze)
+        public Hero(int x, int y, IMazeLevel maze, int heroHealth, int maxHealth, int fatiguePoint, int maxFatigue, int money) : base(x, y, maze)
         {
             HealthPoint = heroHealth;
             MaxHealth = maxHealth;
@@ -30,7 +30,7 @@ namespace ConsoleMaze.Maze.Cells
 
         public override bool TryToStep(IBaseCell unit)
         {
-            if (unit is BaseEnemy enemy && enemy.DealsDamage)
+            if (unit is IBaseEnemy enemy && enemy.DealsDamage)
             {
                 if (HealthPoint > 0)
                 {

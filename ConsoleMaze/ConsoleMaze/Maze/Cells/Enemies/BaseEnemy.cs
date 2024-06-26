@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze.Cells.Enemies
 {
-    public abstract class BaseEnemy : BaseCell
+    public abstract class BaseEnemy : BaseCell, IBaseEnemy
     {
         public Random random = new Random();
 
@@ -17,6 +17,6 @@ namespace ConsoleMaze.Maze.Cells.Enemies
         public BaseEnemy(int x, int y, MazeLevel maze) : base(x, y, maze) { }
 
         public abstract void Step();
-        
+
     }
 }
