@@ -13,10 +13,9 @@ namespace ConsoleMaze.Test.Maze.Cells
     public class GreedyHealerTest
     {
         [Test]
-        [TestCase(9, 4, 3, 10, 10)]
-        [TestCase(1, 1, 2, 2, 10)]
-        [TestCase(2, 2, 10, 10, 10)]
-        [TestCase(0, 0, 5, 5, 10)]
+        [TestCase(9, 4, 3, 10, 10, TestName = "Not max health and enough money")]
+        [TestCase(2, 2, 10, 10, 10, TestName = "Max health and enough money")]
+        [TestCase(0, 0, 5, 5, 10, TestName = "Not max health and not enough money")]
         public void TryToStepTest(int heroMoneyInit, int heroMoneyResult, int heroHealthPointInit, int heroHealthPointResult, int heroMaxHealth)
         {
             // Preparing
@@ -42,9 +41,9 @@ namespace ConsoleMaze.Test.Maze.Cells
             var answer = greedyHealer.TryToStep(heroMock.Object);
 
             //Assert
-            Assert.That(answer, Is.True, "We must have posibility to step on the greedy healer");
             Assert.That(heroMock.Object.Money, Is.EqualTo(heroMoneyResult), "Hero coins should be halved");
             Assert.That(heroMock.Object.HealthPoint, Is.EqualTo(heroHealthPointResult), "Hero health point should increase to max");
+            Assert.That(answer, Is.True, "We must have posibility to step on the greedy healer");
 
             if (heroHealthPointInit < heroMaxHealth && heroMoneyInit > 1)
             {
