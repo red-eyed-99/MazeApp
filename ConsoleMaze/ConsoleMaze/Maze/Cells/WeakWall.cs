@@ -28,7 +28,7 @@ namespace ConsoleMaze.Maze.Cells
 
             if (Durability == 0)
             {
-                Maze[X, Y] = new Ground(X, Y, Maze);
+                Maze.ReplaceCell(new Ground(X, Y, Maze));
             }
 
             return false;
