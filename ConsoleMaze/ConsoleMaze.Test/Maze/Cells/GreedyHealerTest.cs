@@ -41,8 +41,8 @@ namespace ConsoleMaze.Test.Maze.Cells
             var answer = greedyHealer.TryToStep(heroMock.Object);
 
             //Assert
-            Assert.That(heroMock.Object.Money, Is.EqualTo(heroMoneyResult), "Hero coins should be halved");
-            Assert.That(heroMock.Object.HealthPoint, Is.EqualTo(heroHealthPointResult), "Hero health point should increase to max");
+            Assert.That(heroMock.Object.Money, Is.EqualTo(heroMoneyResult));
+            Assert.That(heroMock.Object.HealthPoint, Is.EqualTo(heroHealthPointResult));
             Assert.That(answer, Is.True, "We must have posibility to step on the greedy healer");
 
             if (heroHealthPointInit < heroMaxHealth && heroMoneyInit > 1)
