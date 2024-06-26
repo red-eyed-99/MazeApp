@@ -36,8 +36,15 @@ namespace ConsoleMaze.Test.Maze.Cells
 
             //Assert
             Assert.That(answer, Is.True, "We must have posibility to step on the trap");
-            Assert.That(hpResult, Is.EqualTo(heroMock.Object.HealthPoint));
-            mazeMock.Verify(x => x.ReplaceCell(It.IsAny<BaseCell>()), Times.AtLeastOnce);
+            if (heroMock.Object.HealthPoint > 0)
+            {
+                Assert.That(heroMock.Object.HealthPoint, Is.EqualTo(hpResult), "Hero health point must decrease after stepping on trap");
+            }
+            else
+            {
+                Assert.That(heroMock.Object.HealthPoint, Is.EqualTo(hpResult), "Hero health shouldn't decrease if it's 0");
+            }
+            mazeMock.Verify(x => x.ReplaceCell(It.IsAny<BaseCell>()), Times.AtLeastOnce, "After stepping on the trap, the cell must be replaced by the ground");
         }
     }
 }
