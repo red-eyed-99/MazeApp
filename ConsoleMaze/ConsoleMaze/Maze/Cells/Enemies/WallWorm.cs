@@ -1,6 +1,6 @@
 ﻿namespace ConsoleMaze.Maze.Cells.Enemies
 {
-    public class WallWorm : BaseEnemy
+    public class WallWorm : BaseEnemy, IWallWorm
     {
         public int StepsOnWall { get; set; } = 1;
 

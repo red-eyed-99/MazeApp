@@ -1,9 +1,4 @@
 ﻿using ConsoleMaze.Maze.Cells.Enemies;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze.Cells
 {
@@ -15,12 +10,13 @@ namespace ConsoleMaze.Maze.Cells
 
         public override bool TryToStep(IBaseCell unit)
         {
-            if (unit is WallWorm)
+ 
+            if (unit is IWallWorm)
             {
                 return true;
             }
 
-            if (unit is Hero)
+            if (unit is IHero)
             {
                 Maze.Message = "boom";
                 Durability--;
@@ -28,7 +24,7 @@ namespace ConsoleMaze.Maze.Cells
 
             if (Durability == 0)
             {
-                Maze[X, Y] = new Ground(X, Y, Maze);
+                Maze.ReplaceCell(new Ground(X, Y, Maze));
             }
 
             return false;
