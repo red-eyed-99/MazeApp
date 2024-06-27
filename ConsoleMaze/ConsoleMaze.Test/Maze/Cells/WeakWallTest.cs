@@ -44,6 +44,9 @@ namespace ConsoleMaze.Test.Maze.Cells
             var mazeMock = new Mock<IMazeLevel>();
             var unitMock = new Mock<IWallWorm>();
 
+            mazeMock.SetupProperty(maze => maze.Message);
+            mazeMock.Object.Message = "";
+
             var weakWall = new WeakWall(0, 0, mazeMock.Object);
             weakWall.Durability = weakWallDurabilityInit;
 
@@ -51,6 +54,8 @@ namespace ConsoleMaze.Test.Maze.Cells
 
             Assert.That(answer, Is.True, "Wall worm can step on weak wall");
             Assert.That(weakWall.Durability, Is.EqualTo(weakWallDurabilityResult));
+            Assert.That(mazeMock.Object.Message == "");
+            mazeMock.Verify(maze => maze.ReplaceCell(It.IsAny<BaseCell>()), Times.Never);
         }
 
         [Test]
@@ -71,6 +76,7 @@ namespace ConsoleMaze.Test.Maze.Cells
             Assert.That(answer, Is.False);
             Assert.That(weakWall.Durability, Is.EqualTo(weakWallDurabilityResult));
             Assert.That(mazeMock.Object.Message == "");
+            mazeMock.Verify(maze => maze.ReplaceCell(It.IsAny<BaseCell>()), Times.Never);
         }
     }
 }

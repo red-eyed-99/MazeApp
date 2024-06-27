@@ -15,11 +15,12 @@ namespace ConsoleMaze.Maze.Cells
 
         public override bool TryToStep(IBaseCell unit)
         {
+ 
             if (unit is IWallWorm)
             {
                 return true;
             }
-            
+
             if (unit is IHero)
             {
                 Maze.Message = "boom";
