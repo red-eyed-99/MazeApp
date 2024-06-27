@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Intrinsics.Arm;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleMaze.Maze.Cells.Enemies
+﻿namespace ConsoleMaze.Maze.Cells.Enemies
 {
     public class WallWorm : BaseEnemy
     {
