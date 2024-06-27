@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleMaze.Maze.Cells.Enemies
 {
-    public class WallWorm : BaseEnemy
+    public class WallWorm : BaseEnemy, IWallWorm
     {
         public WallWorm(int x, int y, MazeLevel maze) : base(x, y, maze)
         {
