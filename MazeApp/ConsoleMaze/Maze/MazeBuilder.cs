@@ -22,30 +22,30 @@ namespace ConsoleMaze.Maze
 
             BuildWall();
             BuildGround();
-            BuildCoin();
-            BuildTrap();
-            BuildBlessPoint();
-            BuildVitalityPotion();
-            BuildFountain();
-            BuildBed();
-            BuildGreedyHealer();
-            BuildGoldmine();
-            BuildTeleport();       
-            BuildHealPotion();       
-            BuildPuddle();
-            BuildWolfPit();
-            BuildWeakWall();
-            BuildGeyser();
-            BuildTavern();
+            //BuildCoin();
+            //BuildTrap();
+            //BuildBlessPoint();
+            //BuildVitalityPotion();
+            //BuildFountain();
+            //BuildBed();
+            //BuildGreedyHealer();
+            //BuildGoldmine();
+            //BuildTeleport();       
+            //BuildHealPotion();       
+            //BuildPuddle();
+            //BuildWolfPit();
+            //BuildWeakWall();
+            //BuildGeyser();
+            //BuildTavern();
 
-            var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
-            maze.Hero = hero;
+            //var hero = new Hero(0, 0, maze, 7, 10, 0, 10, 12);
+            //maze.Hero = hero;
 
-            BuildBull();
-            BuildSlime();
-            BuildWallWorm();
-            BuildGoblin();
-            BuildWalkerEnemy();
+            //BuildBull();
+            //BuildSlime();
+            //BuildWallWorm();
+            //BuildGoblin();
+            //BuildWalkerEnemy();
 
             return maze;
         }
